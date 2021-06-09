@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray_bottom">#3E3E40</color>
+    <color name="red">#FF0000</color>
+    <color name="red_light">#E9483F</color>
+    <color name="red_light2">#EC706B</color>
+    <color name="red_light3">#FCF0F0</color>
+    <color name="red_light4">#4DF09E9C</color>
+    <color name="gray_back">#E5E5E5</color>
+    <color name="gray_shadow">#F5F5F5</color>
+    <color name="gray_text">#D8D8D8</color>
+    <color name="gray_text_hint">#8B8B8C</color>
+    <color name="blue_link">#2F80ED</color>
+    <color name="green_light">#D4F1E0</color>
+    <color name="green">#219653</color>
+    <color name="green_status">#27AE60</color>
+    <color name="green_status_light">#4D6FCF97</color>
+    <color name="red_light_status">#F6CECD</color>
+    <color name="black_gray">#333333</color>
+    <color name="black_gray_text">#646466</color>
+
+
+
+
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="yellow">#FCBD00</color>
+    <color name="dark">#3E3E40</color>
+    <color name="light1">#1A646466</color>
+    <color name="medium">#62697B</color>
+    <color name="light">#A5A9B4</color>
+    <color name="light_transparent">#4DA5A9B4</color>
+    <color name="transparent">#00000000</color>
+    <color name="orange">#FF8105</color>
+    <color name="red2">#EE555B</color>
+    <color name="red2_transparent">#33EE555B</color>
+    <color name="red2transparent">#80EE555B</color>
+    <color name="view_background">#FCFEFF</color>
+    <color name="shine">#E8E9EC</color>
+    <color name="back_button">#F4F4F6</color>
+
+    <color name="bottom_navigation_background">#F0F2F6</color>
+
+    <color name="gray_history">#C2D1D9</color>
+
+    <color name="app_background">#F7F8FB</color>
+    <color name="app_background75">#BFF7F8FB</color>
+    <color name="app_background_transparent">#00F7F8FB</color>
+
+</resources>
