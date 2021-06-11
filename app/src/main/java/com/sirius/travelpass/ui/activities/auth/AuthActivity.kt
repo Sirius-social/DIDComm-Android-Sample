@@ -1,28 +1,32 @@
-package com.sirius.travelpass.ui.activites.main
+package com.sirius.travelpass.ui.activities.auth
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import com.sirius.travelpass.R
 import com.sirius.travelpass.base.App
 import com.sirius.travelpass.base.ui.BaseActivity
-import com.sirius.travelpass.databinding.ActivityMainBinding
+import com.sirius.travelpass.databinding.ActivityAuthBinding
+import com.sirius.travelpass.ui.auth.auth_first.AuthFirstFragment
+import com.sirius.travelpass.ui.auth.auth_first.RegisterStep
 
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainActivityModel>() {
+class AuthActivity : BaseActivity<ActivityAuthBinding, AuthActivityModel>() {
 
     companion object {
         @JvmStatic
         fun newInstance(context: Context) {
-            val intent = Intent(context, MainActivity::class.java)
+            val intent = Intent(context, AuthActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
     }
 
+    override fun isBottomNavigationEnabled(): Boolean {
+        return false
+    }
     override fun getLayoutRes(): Int {
-        return R.layout.activity_main
+        return R.layout.activity_auth
     }
 
     override fun initDagger() {
@@ -30,24 +34,18 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityModel>() {
     }
 
     override fun getRootFragmentId(): Int {
-        return R.id.mainFrame
+        return R.id.mainFrameAuth
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dataBinding.navigationBottom.onBottomNavClickListener = model.getOnBottomNavClickListner()
+        showPage(AuthFirstFragment())
     }
 
     override fun subscribe() {
         super.subscribe()
-      /*  model.shopCartSize.observe(this, Observer {
-            dataBinding.navigationBottom.setShopcartNumber(
-                it
-            )
-        })*/
-        model.selectedTab.observe(this, Observer {
-            dataBinding.navigationBottom.selectedTabLiveData.value = it
-        })
+
     }
 
 

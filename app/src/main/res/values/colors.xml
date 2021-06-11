@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_bottom">#3E3E40</color>
-    <color name="red">#FF0000</color>
+
     <color name="red_light">#E9483F</color>
     <color name="red_light2">#EC706B</color>
     <color name="red_light3">#FCF0F0</color>
@@ -19,7 +19,7 @@
     <color name="gray_text_hint">#8B8B8C</color>
     <color name="blue_link">#2F80ED</color>
     <color name="green_light">#D4F1E0</color>
-    <color name="green">#219653</color>
+
     <color name="green_status">#27AE60</color>
     <color name="green_status_light">#4D6FCF97</color>
     <color name="red_light_status">#F6CECD</color>
@@ -32,7 +32,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="yellow">#FCBD00</color>
+
     <color name="dark">#3E3E40</color>
     <color name="light1">#1A646466</color>
     <color name="medium">#62697B</color>
@@ -54,5 +54,17 @@
     <color name="app_background">#F7F8FB</color>
     <color name="app_background75">#BFF7F8FB</color>
     <color name="app_background_transparent">#00F7F8FB</color>
+
+
+
+
+    <color name="grey">#E4E4E4</color>
+    <color name="red">#C64A34</color>
+    <color name="blue">#12145A</color>
+    <color name="yellow">#F0BE53</color>
+    <color name="green">#759042</color>
+    <color name="blue2">#A8B4D1</color>
+    <color name="grey2">#F0F0F0</color>
+    <color name="grey3">#D2D2D2</color>
 
 </resources>

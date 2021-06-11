@@ -5,4 +5,14 @@
     <string name="menu_credentials" >credentials</string>
     <string name="menu_menu" >menu</string>
     <string name="menu_contacts" >contacts</string>
+    <string name="splash_screen_text" >Identity Credential Management</string>
+    <string name="auth_first_hint" >Lets get started…</string>
+    <string name="auth_first_hint_name" >First name</string>
+    <string name="auth_first_hint_lastname" >Last name</string>
+    <string name="auth_next" >Next</string>
+
+    <string name="auth_second_hint" >How do you want to connect?</string>
+    <string name="auth_second_hint_phone" >Phone</string>
+    <string name="auth_second_hint_email" >Email</string>
+
 </resources>

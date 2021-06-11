@@ -2,7 +2,12 @@ package com.sirius.travelpass.base.dagger
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.sirius.travelpass.ui.activites.main.MainActivityModel
+import com.sirius.travelpass.ui.activities.auth.AuthActivityModel
+import com.sirius.travelpass.ui.activities.main.MainActivityModel
+import com.sirius.travelpass.ui.activities.splash.SplashActivityModel
+import com.sirius.travelpass.ui.auth.auth_first.AuthFirstViewModel
+import com.sirius.travelpass.ui.auth.auth_second.AuthSecondViewModel
+import com.sirius.travelpass.ui.auth.auth_third.AuthThirdViewModel
 
 
 import dagger.Binds
@@ -52,17 +57,39 @@ abstract class ViewModelModule {
     @ViewModelKey(MainActivityModel::class)
     internal abstract fun bindMainActivityModel(viewModel: MainActivityModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(AuthActivityModel::class)
+    internal abstract fun bindAuthActivityModel(viewModel: AuthActivityModel): ViewModel
+
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SplashActivityModel::class)
+    internal abstract fun bindSplashActivityModel(viewModel: SplashActivityModel): ViewModel
 
 
     /**
      * Fragments viewModel Here
      */
 
-    //Cabinet
-/*
+
+
     @Binds
     @IntoMap
-    @ViewModelKey(CabinetViewModel::class)
-    internal abstract fun bindCabinetViewModel(viewModel: CabinetViewModel): ViewModel
-*/
+    @ViewModelKey(AuthFirstViewModel::class)
+    internal abstract fun bindAuthFirstViewModel(viewModel: AuthFirstViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AuthSecondViewModel::class)
+    internal abstract fun bindAuthSecondViewModel(viewModel: AuthSecondViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AuthThirdViewModel::class)
+    internal abstract fun bindAuthThirdViewModel(viewModel: AuthThirdViewModel): ViewModel
+
+
+
 }
