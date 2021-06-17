@@ -18,7 +18,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 
+import com.sirius.travelpass.R;
 import com.sirius.travelpass.design.BottomNavView;
+import com.sirius.travelpass.ui.contacts.ContactsFragment;
+import com.sirius.travelpass.ui.credentials.CredentialsFragment;
+import com.sirius.travelpass.ui.menu.MenuFragment;
 
 
 import java.lang.reflect.ParameterizedType;
@@ -122,10 +126,10 @@ public abstract class BaseActivity<VB extends ViewDataBinding, M extends BaseAct
     }
 
     public void showPage(BaseFragment page) {
-        showPage(page, null);
+        showPage(page, null, 0,0);
     }
 
-    public void showPage(BaseFragment page, Bundle bundle) {
+    public void showPage(BaseFragment page, Bundle bundle, int enterAnimations, int exitAnimations) {
         if (getRootFragmentId() == 0) {
             throw new IllegalArgumentException("Declare geRootFragmentId() to use this method");
         }
@@ -136,7 +140,12 @@ public abstract class BaseActivity<VB extends ViewDataBinding, M extends BaseAct
         }
         page.setBack(false);
         isBack = false;
-        getSupportFragmentManager().beginTransaction().replace(getRootFragmentId(), page).commitAllowingStateLoss();
+
+            FragmentTransaction transaction =     getSupportFragmentManager().beginTransaction();
+            if(enterAnimations !=0 && exitAnimations!=0){
+                transaction.setCustomAnimations(enterAnimations,exitAnimations) ;
+            }
+        transaction.replace(getRootFragmentId(), page).commitAllowingStateLoss();
     }
 
     public void showPage(BaseFragment page, boolean isBack) {
@@ -260,17 +269,17 @@ public abstract class BaseActivity<VB extends ViewDataBinding, M extends BaseAct
         model.getBottomNavClick().observe(this, new Observer<BottomNavView.BottomTab>() {
             @Override
             public void onChanged(BottomNavView.BottomTab bottomTab) {
-               /* switch (bottomTab) {
-                    case Requests:
-                        showPage(new RequestsFragment());
+                switch (bottomTab) {
+                    case Contacts:
+                        showPage(new ContactsFragment());
                         break;
-                    case Notifications:
-                        showPage(new ChatFragment());
+                    case Menu:
+                        showPage(new MenuFragment());
                         break;
-                    case Cabinet:
-                        showPage(new CabinetFragment());
+                    case Credentials:
+                        showPage(new CredentialsFragment());
                         break;
-                }*/
+                }
             }
         });
 

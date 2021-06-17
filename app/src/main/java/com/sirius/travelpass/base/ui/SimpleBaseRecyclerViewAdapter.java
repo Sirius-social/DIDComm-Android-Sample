@@ -12,6 +12,7 @@ public abstract class SimpleBaseRecyclerViewAdapter<T, H extends RecyclerView.Vi
 
 
 
+
     @Override
     public H onCreateViewHolder(ViewGroup parent, int viewType) {
         return getViewHolder(parent, getLayoutRes(), viewType);
@@ -47,14 +48,6 @@ public abstract class SimpleBaseRecyclerViewAdapter<T, H extends RecyclerView.Vi
     public void setParentFragment(BaseFragment parentFragment) {
         this.parentFragment = parentFragment;
     }
-/*
-    public MainActivity getMainActivity() {
-        if (getActivity() != null) {
-            if(getActivity() instanceof MainActivity){
-                return ((MainActivity) getActivity());
-            }
 
-        }
-        return null;
-    }*/
+
 }

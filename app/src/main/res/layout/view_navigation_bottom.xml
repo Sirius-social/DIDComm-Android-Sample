@@ -4,16 +4,30 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/gray_bottom"
-        android:gravity="center_vertical">
-
+        android:id="@+id/viewBack"
+        android:background="@drawable/back_bottom_tab"
+        android:gravity="center">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
 
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/requestsBtn"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+
             android:orientation="vertical">
 
 
@@ -24,19 +38,22 @@
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@+id/chatBtn"
                 android:layout_weight="1"
-
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/menu_contacts"
                 android:visibility="visible" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/requestsBtnText"
-                android:textSize="12sp"
+
                 android:gravity="center"
+                android:textAllCaps="true"
+                style="@style/FontRegular"
+                android:textSize="10sp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
                 android:text="@string/menu_contacts"/>
         </LinearLayout>
 
@@ -45,19 +62,19 @@
 
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/notificationsBtn"
-            android:layout_weight="1"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/notificationsBtnImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="38dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="8dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="16dp"
                     android:src="@drawable/menu_menu" />
 
                 <TextView
@@ -69,40 +86,64 @@
                     android:layout_marginBottom="8dp"
                     android:layout_gravity="center"
                     android:textColor="@color/white"
-                    android:text="@string/menu_menu"/>
+                    />
             </LinearLayout>
 
 
 
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+
+
             android:id="@+id/cabinetBtn"
             android:orientation="vertical">
             <ImageView
                 android:id="@+id/cabinetBtnImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@+id/chatBtn"
                 android:layout_weight="1"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:src="@drawable/menu_credential"
                 android:visibility="visible" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/cabinetBtnText"
-                android:textSize="14sp"
+
                 android:gravity="center"
+                android:textAllCaps="true"
+                style="@style/FontRegular"
+                android:textSize="10sp"
+                android:layout_marginTop="4dp"
                 android:layout_marginBottom="8dp"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
+                android:textColor="@color/blue"
                 android:text="@string/menu_credentials"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_weight="1"
+            android:id="@+id/actionsBtn"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/actionsBtnImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/menu_action"
+                android:visibility="visible" />
+
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

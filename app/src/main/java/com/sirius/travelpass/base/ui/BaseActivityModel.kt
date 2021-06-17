@@ -9,8 +9,8 @@ abstract class BaseActivityModel(resourceProvider: ResourcesProvider) : BaseView
     resourceProvider
 )  {
 
-    val  bottomNavClick : MutableLiveData<BottomNavView.BottomTab> =  MutableLiveData(BottomNavView.BottomTab.Contacts)
-    var selectedTab = MutableLiveData(BottomNavView.BottomTab.Contacts)
+    val  bottomNavClick : MutableLiveData<BottomNavView.BottomTab> =  MutableLiveData(BottomNavView.BottomTab.Menu)
+    var selectedTab = MutableLiveData(BottomNavView.BottomTab.Menu)
     val  isVisibleUnauthBottomBar   : MutableLiveData<Pair<Boolean,Boolean>> =  MutableLiveData<Pair<Boolean,Boolean>>(Pair(false,false))
 
     fun getOnBottomNavClickListner() : BottomNavView.OnbottomNavClickListener{

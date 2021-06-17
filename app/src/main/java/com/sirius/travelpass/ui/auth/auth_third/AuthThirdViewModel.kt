@@ -21,17 +21,18 @@ open class AuthThirdViewModel @Inject constructor(
     val registerBtnTextLiveData = MutableLiveData<String>("")
     val alreadyExistAccountTextLiveData = MutableLiveData<CharSequence>()
     val goToTypeInfoScreenLiveData = MutableLiveData<Boolean>()
+    val goToNextInfoScreenLiveData = MutableLiveData<Boolean>()
     val nextVisibilityLiveData = MutableLiveData<Int>()
     val countryCodeLiveData = MutableLiveData<String>("+1")
 
 
 
     fun onRegisterClick(v: View) {
-
+        goToTypeInfoScreenLiveData.postValue(true)
     }
 
-    fun onCountryCodeClick(v: View){
-
+    fun onNextClick(v: View){
+        goToNextInfoScreenLiveData.postValue(true)
     }
 
     override fun setupViews() {

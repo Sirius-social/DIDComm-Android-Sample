@@ -27,7 +27,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityModel>(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Handler().postDelayed({
-            AuthActivity.newInstance(this)
+            MainActivity.newInstance(this)
            // MainActivity.newInstance(this)
           /*  if(AppPref.getInstance().isLoggedIn()){
                 MainActivity.newInstance(this)

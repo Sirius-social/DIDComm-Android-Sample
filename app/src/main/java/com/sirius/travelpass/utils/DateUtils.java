@@ -39,6 +39,7 @@ public class DateUtils {
     public static final String PATTERN_ddMMMyyyy = "dd MMM yyyy";
     public static final String PATTERN_ddMMMMyyyy = "dd MMMM yyyy";
     public static final String PATTERN_ddMMMyyyyHHmm = "dd MMM yyyy HH:mm";
+    public static final String PATTERN_ddMMMyyyyBase = "dd/MM/yyyy";
     public static final String PATTERN_E = "E";
     public static final String DATEFORMAT_EEEE = "EEEE";
     public static final String PATTERN_EE = "EE";
@@ -73,6 +74,10 @@ public class DateUtils {
         return dateStr;
     }
 
+
+    public static String getStringFromDateBase(Date date){
+        return getStringFromDate(date, PATTERN_ddMMMyyyyBase,false);
+    }
     @SuppressLint("SimpleDateFormat")
     public static Date getDateFromString(String dateStr, String pattern, boolean fromGmt) {
         if (dateStr == null) return new Date();

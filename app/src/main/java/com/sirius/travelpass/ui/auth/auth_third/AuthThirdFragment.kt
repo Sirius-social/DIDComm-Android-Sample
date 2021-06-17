@@ -11,6 +11,8 @@ import com.sirius.travelpass.base.ui.BaseFragment
 
 import com.sirius.travelpass.databinding.FragmentAuthSecondBinding
 import com.sirius.travelpass.databinding.FragmentAuthThirdBinding
+import com.sirius.travelpass.ui.auth.auth_fourth.AuthFourthFragment
+import com.sirius.travelpass.ui.auth.auth_third_identity.AuthThirdIdentityFragment
 
 
 class AuthThirdFragment : BaseFragment<FragmentAuthThirdBinding, AuthThirdViewModel>() {
@@ -19,37 +21,7 @@ class AuthThirdFragment : BaseFragment<FragmentAuthThirdBinding, AuthThirdViewMo
         super.setupViews()
 
         dataBinding.indicatorView.selectPage(3)
-        dataBinding.phoneEditText.addTextChangedListener(object: TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                model.setPhone(s.toString())
-                model.isNextEnabled()
-            }
-
-        })
-
-        dataBinding.emailEditText.addTextChangedListener(object: TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                model.setUserEmail(s.toString())
-                model.isNextEnabled()
-            }
-
-        })
     }
 
     override fun getLayoutRes(): Int {
@@ -61,12 +33,16 @@ class AuthThirdFragment : BaseFragment<FragmentAuthThirdBinding, AuthThirdViewMo
     }
 
     override fun subscribe() {
-
-
         model.goToTypeInfoScreenLiveData.observe(this, Observer {
             if (it) {
                 model.goToTypeInfoScreenLiveData.value = false
-             //   baseActivity.pushPage(RegisterTypeInfoFragment())
+                baseActivity.pushPage(AuthThirdIdentityFragment())
+            }
+        })
+        model.goToNextInfoScreenLiveData.observe(this, Observer {
+            if (it) {
+                model.goToNextInfoScreenLiveData.value = false
+                baseActivity.pushPage(AuthFourthFragment())
             }
         })
     }

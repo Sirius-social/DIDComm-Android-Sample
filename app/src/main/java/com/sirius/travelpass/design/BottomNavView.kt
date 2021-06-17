@@ -2,6 +2,7 @@ package com.sirius.travelpass.design
 
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.FrameLayout
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.sirius.travelpass.R
+import com.sirius.travelpass.base.App
 import kotlinx.android.synthetic.main.view_navigation_bottom.view.*
 
 
@@ -31,14 +33,13 @@ class BottomNavView @JvmOverloads constructor(
         fun onBottomClick(tab : BottomTab)
     }
 
-    fun setShopcartNumber(number : Int){
-     /*   if (number>0){
-            shopcartBadgeLayout.visibility = VISIBLE
-            shopcartBadgeText.setText(number.toString())
+    fun showActionsBtn(show : Boolean){
+        if (show){
+            actionsBtn.visibility = VISIBLE
+
         }else{
-            shopcartBadgeLayout.visibility = GONE
-            shopcartBadgeText.setText("")
-        }*/
+            actionsBtn.visibility = INVISIBLE
+        }
 
     }
 
@@ -46,6 +47,7 @@ class BottomNavView @JvmOverloads constructor(
 
     init {
        val view =  View.inflate(context, R.layout.view_navigation_bottom, this)
+
         requestsBtn.isClickable = true
         notificationsBtn.isClickable = true
         cabinetBtn.isClickable = true
@@ -53,7 +55,7 @@ class BottomNavView @JvmOverloads constructor(
         requestsBtn.setOnClickListener { onButtonClick(BottomTab.Contacts) }
         notificationsBtn.setOnClickListener { onButtonClick(BottomTab.Menu) }
         cabinetBtn.setOnClickListener {  onButtonClick(BottomTab.Credentials) }
-        setShopcartNumber(0)
+        showActionsBtn(false)
         setImagesForTabs()
         selectedTabLiveData.observeForever( Observer {tab->
             setImagesForTabs()
@@ -66,30 +68,32 @@ class BottomNavView @JvmOverloads constructor(
     }
 
     private fun setAllButtonUnselected(){
-        requestsBtn.alpha = 0.7F
-        notificationsBtn.alpha = 0.7F
-        cabinetBtn.alpha = 0.7F
-        requestsBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP,12F)
-        notificationsBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP,12F)
-        cabinetBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP,12F)
+       // requestsBtn.alpha = 0.7F
+      //  notificationsBtn.alpha = 0.7F
+     //   cabinetBtn.alpha = 0.7F
+    //    requestsBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP,10F)
+    //    notificationsBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP,10F)
+    //    cabinetBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP,10F)
     }
     private fun setImagesForTabs(){
         when(selectedTabLiveData.value){
             BottomTab.Contacts->{
                 setAllButtonUnselected()
-                requestsBtn.alpha = 1F
-                requestsBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP,14F)
+                viewBack.backgroundTintList = ColorStateList.valueOf(App.getContext().resources.getColor(R.color.grey3))
+                requestsBtnText.visibility = View.INVISIBLE
+                cabinetBtnText.visibility = View.INVISIBLE
             }
             BottomTab.Menu -> {
                 setAllButtonUnselected()
-                notificationsBtn.alpha = 1F
-                notificationsBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP,14F)
-
+                viewBack.backgroundTintList =null
+                requestsBtnText.visibility = View.VISIBLE
+                cabinetBtnText.visibility = View.VISIBLE
             }
             BottomTab.Credentials -> {
                 setAllButtonUnselected()
-                cabinetBtn.alpha = 1F
-                cabinetBtnText.setTextSize(TypedValue.COMPLEX_UNIT_SP,14F)
+                viewBack.backgroundTintList = ColorStateList.valueOf(App.getContext().resources.getColor(R.color.grey3))
+                requestsBtnText.visibility = View.INVISIBLE
+                cabinetBtnText.visibility = View.INVISIBLE
             }
 
         }
