@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.sirius.travelpass.base.providers.ResourcesProvider
 import com.sirius.travelpass.base.ui.BaseViewModel
 import com.sirius.travelpass.models.ui.ItemContacts
+import com.sirius.travelpass.models.ui.ItemTags
 import com.sirius.travelpass.repository.UserRepository
 import java.util.*
 
@@ -21,15 +22,30 @@ open class ContactsViewModel @Inject constructor(
 
     val adapterListLiveData : MutableLiveData<List<ItemContacts>> = MutableLiveData(listOf())
     val onChatClickLiveData : MutableLiveData<ItemContacts?> = MutableLiveData()
+    val onAddTagBtnClickLiveData : MutableLiveData<ItemContacts?> = MutableLiveData()
+    val onMoreBtnClickLiveData : MutableLiveData<ItemContacts?> = MutableLiveData()
     val onDetailsClickLiveData : MutableLiveData<ItemContacts?> = MutableLiveData()
+    val onTagsClickLiveData : MutableLiveData<ItemTags?> = MutableLiveData()
 
 
     fun onChatsClick(item: ItemContacts) {
         onChatClickLiveData.postValue(item)
     }
 
+    fun onAddTagBtnClick(item: ItemContacts) {
+        onAddTagBtnClickLiveData.postValue(item)
+    }
+
+    fun onMoreActionBtnClick(item: ItemContacts) {
+        onMoreBtnClickLiveData.postValue(item)
+    }
+
     fun onDetailsClick(item: ItemContacts) {
         onDetailsClickLiveData.postValue(item)
+    }
+
+    fun onTagsClick(item: ItemTags) {
+        onTagsClickLiveData.postValue(item)
     }
 
     private fun createList() : MutableList<ItemContacts>{

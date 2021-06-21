@@ -53,11 +53,18 @@
     <string name="btn_scan_qr_show_code" >Reveal My Code</string>
     <string name="camera_qr_scan_permission">For scan Qr you need to give permissions</string>
 
+
+    <string name="validating">Validating...</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="details_history">History</string>
+
     <string name="connected_at">connected</string>
     <string name="issued_at">issued</string>
     <string name="details">Details</string>
     <string name="filter_date_credential">Date issued</string>
     <string name="filter_date_recent">Recent</string>
+    <string name="btn_add_tag">add tag</string>
 
     <string name="search_hint" >SEARCH</string>
 </resources>

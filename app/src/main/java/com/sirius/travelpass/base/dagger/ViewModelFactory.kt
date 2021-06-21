@@ -18,6 +18,7 @@ import com.sirius.travelpass.ui.credentials.CredentialsViewModel
 import com.sirius.travelpass.ui.menu.MenuViewModel
 import com.sirius.travelpass.ui.qrcode.ScanQrViewModel
 import com.sirius.travelpass.ui.qrcode.ShowQrViewModel
+import com.sirius.travelpass.ui.validating.ValidatingViewModel
 
 
 import dagger.Binds
@@ -148,5 +149,12 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ChatsViewModel::class)
     internal abstract fun bindChatsViewModel(viewModel: ChatsViewModel): ViewModel
+
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ValidatingViewModel::class)
+    internal abstract fun bindValidatingViewModel(viewModel: ValidatingViewModel): ViewModel
+
 
 }

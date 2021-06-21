@@ -16,6 +16,7 @@ import com.sirius.travelpass.ui.credentials.CredentialsFragment
 import com.sirius.travelpass.ui.menu.MenuFragment
 import com.sirius.travelpass.ui.qrcode.ScanQrFragment
 import com.sirius.travelpass.ui.qrcode.ShowQrFragment
+import com.sirius.travelpass.ui.validating.ValidatingFragment
 
 
 import dagger.BindsInstance
@@ -60,5 +61,6 @@ interface AppComponent {
     fun inject(fragment: ScanQrFragment)
     fun inject(fragment: ShowQrFragment)
     fun inject(fragment: ChatsFragment)
+    fun inject(fragment: ValidatingFragment)
 
 }

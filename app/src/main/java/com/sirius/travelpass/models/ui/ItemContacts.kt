@@ -1,5 +1,6 @@
 package com.sirius.travelpass.models.ui
 
+import android.view.View
 import java.io.Serializable
 import java.util.*
 
