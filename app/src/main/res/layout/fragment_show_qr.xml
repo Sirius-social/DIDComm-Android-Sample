@@ -22,7 +22,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo_sirius" />
 
         <TextView
             android:id="@+id/title"

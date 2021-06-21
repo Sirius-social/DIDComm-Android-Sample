@@ -18,22 +18,22 @@
         <ImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="32dp"
             android:padding="16dp"
             android:layout_marginRight="32dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo_sirius" />
 
         <ImageView
             android:id="@+id/logo_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginLeft="32dp"
 
             android:layout_marginRight="32dp"
             android:layout_below="@+id/logo"
-            android:src="@drawable/logo_text" />
+            android:src="@drawable/ic_text_logo" />
 
 
         <ImageView

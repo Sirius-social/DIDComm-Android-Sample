@@ -24,7 +24,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:padding="12dp"
-            android:src="@drawable/logo"  />
+            android:src="@drawable/logo_sirius"  />
 
         <TextView
             android:id="@+id/firstHint"
@@ -67,6 +67,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
+                app:tint="@color/defaultColor"
                 android:layout_marginLeft="16dp"
                 android:src="@drawable/btn_next" />
         </LinearLayout>

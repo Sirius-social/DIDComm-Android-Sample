@@ -8,11 +8,11 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
            android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="72dp"
-            android:src="@drawable/logo_full"
+            android:src="@drawable/ic_full_logo"
             android:id="@+id/logo"
             />
 
@@ -32,8 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:progressTint="@color/green"
-            android:progressBackgroundTint="@color/green"
+            android:progressTint="@color/defaultColor"
+            android:progressBackgroundTint="@color/defaultColor"
             android:layout_gravity="center"/>
     </LinearLayout>
 </layout>
