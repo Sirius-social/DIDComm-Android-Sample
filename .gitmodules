@@ -1,0 +1,3 @@
+[submodule "sirius-sdk-android"]
+	path = sirius-sdk-android
+	url = git@github.com:Sirius-social/sirius-sdk-android.git
