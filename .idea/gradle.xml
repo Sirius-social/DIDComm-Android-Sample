@@ -11,6 +11,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/sirius-sdk-android" />
+            <option value="$PROJECT_DIR$/sirius-sdk-android/sdk_android" />
+            <option value="$PROJECT_DIR$/sirius-sdk-android/sdk_android/java_sdk" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
