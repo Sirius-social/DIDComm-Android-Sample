@@ -3,6 +3,7 @@ package com.sirius.travelpass.base.dagger
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.sirius.travelpass.ui.activities.auth.AuthActivityModel
+import com.sirius.travelpass.ui.activities.loader.LoaderActivityModel
 import com.sirius.travelpass.ui.activities.main.MainActivityModel
 import com.sirius.travelpass.ui.activities.splash.SplashActivityModel
 import com.sirius.travelpass.ui.auth.auth_first.AuthFirstViewModel
@@ -11,13 +12,14 @@ import com.sirius.travelpass.ui.auth.auth_second.AuthSecondViewModel
 import com.sirius.travelpass.ui.auth.auth_third.AuthThirdViewModel
 import com.sirius.travelpass.ui.auth.auth_third_identity.AuthThirdChooseIdViewModel
 import com.sirius.travelpass.ui.auth.auth_third_identity.AuthThirdIdentityViewModel
+import com.sirius.travelpass.ui.auth.auth_zero.AuthZeroViewModel
 import com.sirius.travelpass.ui.chats.ChatsViewModel
-import com.sirius.travelpass.ui.contacts.ContactsFragment
 import com.sirius.travelpass.ui.contacts.ContactsViewModel
 import com.sirius.travelpass.ui.credentials.CredentialsViewModel
 import com.sirius.travelpass.ui.menu.MenuViewModel
 import com.sirius.travelpass.ui.qrcode.ScanQrViewModel
 import com.sirius.travelpass.ui.qrcode.ShowQrViewModel
+import com.sirius.travelpass.ui.validating.ErrorViewModel
 import com.sirius.travelpass.ui.validating.ValidatingViewModel
 
 
@@ -79,11 +81,20 @@ abstract class ViewModelModule {
     @ViewModelKey(SplashActivityModel::class)
     internal abstract fun bindSplashActivityModel(viewModel: SplashActivityModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoaderActivityModel::class)
+    internal abstract fun bindLoaderActivityModel(viewModel: LoaderActivityModel): ViewModel
+
 
     /**
      * Fragments viewModel Here
      */
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(AuthZeroViewModel::class)
+    internal abstract fun bindAuthZeroViewModel(viewModel: AuthZeroViewModel): ViewModel
 
 
     @Binds
@@ -156,5 +167,9 @@ abstract class ViewModelModule {
     @ViewModelKey(ValidatingViewModel::class)
     internal abstract fun bindValidatingViewModel(viewModel: ValidatingViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(ErrorViewModel::class)
+    internal abstract fun bindErrorViewModel(viewModel: ErrorViewModel): ViewModel
 
 }

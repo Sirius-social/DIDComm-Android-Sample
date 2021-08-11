@@ -1,13 +1,14 @@
 package com.sirius.travelpass.ui.qrcode
 
-import android.net.Uri
-import android.text.TextUtils
-import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.sirius.travelpass.base.providers.ResourcesProvider
 import com.sirius.travelpass.base.ui.BaseViewModel
+import com.sirius.travelpass.repository.EventRepository
 import com.sirius.travelpass.repository.UserRepository
+import com.sirius.sdk_android.helpers.ChanelHelper
+import com.sirius.sdk_android.helpers.InvitationHelper
 
 import javax.inject.Inject
 
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 open class ScanQrViewModel @Inject constructor(
     val userRepository: UserRepository,
-    resourcesProvider: ResourcesProvider
+    resourcesProvider: ResourcesProvider,
+    val eventRepository: EventRepository
 ) : BaseViewModel(resourcesProvider) {
 
 
@@ -30,17 +32,18 @@ open class ScanQrViewModel @Inject constructor(
         onBackButtonClick(v)
     }
 
-    open fun onCodeScanned(code: String) : Boolean {
-      /*  if (validateInvitationUrl(code)) {
-            parseInvitationLink(code)
+    fun onCodeScanned(result: String) : Boolean{
+        val message = InvitationHelper.getInstance().parseInvitationLink(result)
+        if (message != null) {
+            ChanelHelper.getInstance().parseMessage(message)
             return true
         } else {
-            val textError: String = resourcesProvider.getString(R.string.invite_qr_scan_hint_error)
+            val textError: String ="The scanned QR code is not an invitation, please scan another QR code."
             onShowToastLiveData.postValue(textError)
             return false
-        }*/
-        return true;
+        }
     }
+
 
     /*private fun validateInvitationUrl(rawValue: String): Boolean {
         //DEMO

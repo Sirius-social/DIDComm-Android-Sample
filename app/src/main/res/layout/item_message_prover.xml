@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.Gravity" />
+        <import type="com.sirius.travelpass.R" />
+        <import type="com.sirius.travelpass.utils.DateUtils" />
+        <import type="androidx.core.content.ContextCompat" />
+        <variable
+            name="item"
+            type="com.sirius.travelpass.ui.chats.message.ProverItemMessage" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:layout_margin="16dp"
+            app:contentPadding="16dp"
+            app:cardUseCompatPadding="true"
+            app:cardBackgroundColor="@color/cardConnectionCredentials">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    style="@style/Regular19"
+                    android:text="@string/message_credentials_request"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/btn_yellow_round"
+                    android:layout_marginTop="16dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/FontBold"
+                            android:textSize="16sp"
+                            android:id="@+id/title"
+                            android:layout_marginLeft="8dp"
+                            android:textColor="@color/blue"
+                            android:text="@{item.title}"
+                            tools:text="Permanent Resident Card"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/Regular14"
+                            android:id="@+id/hint"
+                            android:layout_marginLeft="8dp"
+                            android:textColor="@color/blue"
+                            tools:text="USCIS"
+                            android:text="@{item.hint}"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:nestedScrollingEnabled="false"
+                            tools:itemCount="4"
+
+                            tools:listitem="@layout/view_items_credentials_detail"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            android:id="@+id/attachList"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="4dp"
+                            android:layout_marginLeft="4dp"
+                            android:id="@+id/detailsBtn">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:text="@string/details"
+                                android:textColor="@color/gray_text_hint"
+                                android:layout_height="wrap_content"
+
+                                style="@style/Regular14"
+                                />
+                            <ImageView
+                                android:layout_width="15dp"
+                                android:layout_height="15dp"
+                                android:layout_gravity="bottom"
+                                android:src="@drawable/ic_right_arrow"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp"
+                        android:background="@drawable/btn_yellow_round">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            style="@style/FontBold"
+                            android:id="@+id/status"
+                            android:textSize="12sp"
+                            android:textColor="@color/white"
+                            android:textAllCaps="true"
+                            android:text="@string/issued_at"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            style="@style/FontBold"
+                            android:id="@+id/statusDate"
+                            android:textSize="12sp"
+                            android:textColor="@color/white"
+                            android:text="12/22/2021"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="8dp"
+                        android:text="@string/action_decline"
+                        android:gravity="center"
+                        android:textAllCaps="true"
+                        style="@style/Regular15"
+                        android:id="@+id/cancelBtn"
+                        android:textColor="@color/hintColor"
+                        android:background="@drawable/btn_gray_round"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="8dp"
+                        android:gravity="center"
+                        android:textAllCaps="true"
+                        style="@style/Regular15"
+                        android:id="@+id/yesBtn"
+                        android:textColor="@color/blue"
+                        android:background="@drawable/btn_gray_round"
+                        android:text="@string/action_yes"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</layout>

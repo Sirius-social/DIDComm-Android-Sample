@@ -7,35 +7,34 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sirius.travelpass.R
 import com.sirius.travelpass.base.ui.BaseMultiRecyclerViewAdapter
-import com.sirius.travelpass.base.ui.SimpleBaseRecyclerViewAdapter
-import com.sirius.travelpass.databinding.ViewItemsContactsBinding
-import com.sirius.travelpass.models.ui.ItemContacts
+
+import com.sirius.travelpass.databinding.ItemMessageConnectBinding
+import com.sirius.travelpass.databinding.ItemMessageOfferBinding
+import com.sirius.travelpass.databinding.ItemMessageTextBinding
+import com.sirius.travelpass.ui.chats.holder.MessageViewHolder
+import com.sirius.travelpass.ui.chats.message.BaseItemMessage
+import com.sirius.travelpass.ui.chats.message.OfferItemMessage
+import com.sirius.travelpass.ui.credentials.CredentialsDetailAdapter
 
 
 class MessagesListAdapter :
-    BaseMultiRecyclerViewAdapter<ItemContacts>() {
-
-
+    BaseMultiRecyclerViewAdapter<BaseItemMessage>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val layoutRes = MessageViewHolder.getLayoutResFromType(viewType)
         val view =
-            LayoutInflater.from(parent.context).inflate( R.layout.view_items_contacts, parent, false)
-        return ContactsViewHolder(view)
+            LayoutInflater.from(parent.context).inflate(layoutRes, parent, false)
+        return MessageViewHolder.getHolderFromType(viewType, view)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
-        (holder as? ContactsViewHolder)?. bind(item)
+        (holder as? MessageViewHolder)?.bind(item)
     }
 
 
-
-    class ContactsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var binding: ViewItemsContactsBinding? = DataBindingUtil.bind<ViewItemsContactsBinding>(itemView)
-        fun bind(item: ItemContacts) {
-            binding?.model = item
-        }
+    override fun getItemViewType(position: Int): Int {
+        return getItem(position).getType().ordinal
     }
-
 
 }

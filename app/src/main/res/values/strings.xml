@@ -10,6 +10,8 @@
     <string name="auth_first_hint_name" >First name</string>
     <string name="auth_first_hint_lastname" >Last name</string>
     <string name="auth_next" >Next</string>
+    <string name="auth_login" >Login</string>
+    <string name="auth_pass" >Password</string>
 
     <string name="auth_second_hint" >How do you want to connect?</string>
     <string name="auth_second_hint_phone" >Phone</string>
@@ -67,4 +69,16 @@
     <string name="btn_add_tag">add tag</string>
 
     <string name="search_hint" >SEARCH</string>
+
+
+
+    <string name="action_yes" >Yes</string>
+    <string name="action_decline" >Decline</string>
+
+
+    <string name="message_connected_successfully" >Connection Approved</string>
+    <string name="message_offer_successfully" >Credentials accepted</string>
+    <string name="message_credentials_offer" >Credentials offered</string>
+    <string name="message_credentials_request" >Credentials requested</string>
+    <string name="message_credentials_request_succes" >Credentials approved</string>
 </resources>

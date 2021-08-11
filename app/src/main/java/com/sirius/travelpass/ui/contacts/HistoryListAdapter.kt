@@ -7,12 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sirius.travelpass.R
 import com.sirius.travelpass.base.ui.SimpleBaseRecyclerViewAdapter
-import com.sirius.travelpass.databinding.ViewItemsContactsBinding
 import com.sirius.travelpass.databinding.ViewItemsCredentialsHistoryBinding
-import com.sirius.travelpass.databinding.ViewItemsTagsBinding
-import com.sirius.travelpass.models.ui.ItemContacts
 import com.sirius.travelpass.models.ui.ItemCredentials
-import com.sirius.travelpass.models.ui.ItemTags
 
 
 class HistoryListAdapter() :

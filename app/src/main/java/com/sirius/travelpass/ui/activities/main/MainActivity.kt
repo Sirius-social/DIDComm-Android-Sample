@@ -8,6 +8,9 @@ import com.sirius.travelpass.R
 import com.sirius.travelpass.base.App
 import com.sirius.travelpass.base.ui.BaseActivity
 import com.sirius.travelpass.databinding.ActivityMainBinding
+import com.sirius.travelpass.design.BottomNavView
+import com.sirius.travelpass.ui.validating.ErrorFragment
+import com.sirius.travelpass.ui.validating.ValidatingFragment
 
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainActivityModel>() {
@@ -45,8 +48,22 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityModel>() {
                 it
             )
         })*/
+
         model.selectedTab.observe(this, Observer {
             dataBinding.navigationBottom.selectedTabLiveData.value = it
+        })
+
+        model.invitationStartLiveData.observe(this, Observer {
+                pushPage(ValidatingFragment())
+        })
+
+        model.invitationStopLiveData.observe(this, Observer {
+            if(it.first){
+                model.bottomNavClick.postValue(BottomNavView.BottomTab.Contacts)
+            }else{
+                popPage(ErrorFragment.newInstance(it.second))
+            }
+
         })
     }
 

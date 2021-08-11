@@ -5,8 +5,6 @@ import com.sirius.travelpass.R
 import com.sirius.travelpass.base.App
 import com.sirius.travelpass.base.ui.BaseFragment
 
-import com.sirius.travelpass.databinding.FragmentAuthThirdChooseBinding
-import com.sirius.travelpass.databinding.FragmentMenuBinding
 import com.sirius.travelpass.databinding.FragmentShowQrBinding
 
 
