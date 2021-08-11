@@ -11,6 +11,7 @@ import com.sirius.travelpass.databinding.ActivitySplashBinding
 import com.sirius.travelpass.ui.activities.auth.AuthActivity
 import com.sirius.travelpass.ui.activities.loader.LoaderActivity
 import com.sirius.travelpass.ui.activities.main.MainActivity
+import com.sirius.travelpass.ui.activities.tutorial.TutorialActivity
 
 
 class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityModel>() {
@@ -29,11 +30,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityModel>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //MainActivity.newInstance(this)
         if (AppPref.getInstance().isLoggedIn()) {
             LoaderActivity.newInstance(this)
         } else {
-            AuthActivity.newInstance(this)
+            TutorialActivity.newInstance(this)
         }
         finish()
     }

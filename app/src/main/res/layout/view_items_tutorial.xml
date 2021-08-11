@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.sirius.travelpass.models.ui.ItemTutorial" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            style="@style/FontBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:text="@{model.title}"
+            tools:text="@string/tutorial_title_1"
+            android:textColor="@color/blue" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:src="@drawable/tutorial_1"
+            android:id="@+id/tutorialImage"
+
+          />
+        <TextView
+            style="@style/Regular19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="16dp"
+            android:text="@{model.text}"
+            tools:text="@string/tutorial_text_1"
+            android:textColor="@color/blue" />
+    </LinearLayout>
+</layout>

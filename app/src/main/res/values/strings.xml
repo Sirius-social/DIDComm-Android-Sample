@@ -10,6 +10,8 @@
     <string name="auth_first_hint_name" >First name</string>
     <string name="auth_first_hint_lastname" >Last name</string>
     <string name="auth_next" >Next</string>
+    <string name="auth_start" >Start</string>
+    <string name="auth_skip" >Skip</string>
     <string name="auth_login" >Login</string>
     <string name="auth_pass" >Password</string>
 
@@ -76,9 +78,17 @@
     <string name="action_decline" >Decline</string>
 
 
+
     <string name="message_connected_successfully" >Connection Approved</string>
     <string name="message_offer_successfully" >Credentials accepted</string>
     <string name="message_credentials_offer" >Credentials offered</string>
     <string name="message_credentials_request" >Credentials requested</string>
     <string name="message_credentials_request_succes" >Credentials approved</string>
+
+    <string name="tutorial_title_1" >All around the world</string>
+    <string name="tutorial_text_1" >Our identity system is recognized all over the world and you can travel with credentials wherever you want  </string>
+    <string name="tutorial_title_2" >Secure</string>
+    <string name="tutorial_text_2" >We are a member of the SSI(Self-sovereign identity) family, which means that we fully meet their requirements in the field of security and cryptography </string>
+    <string name="tutorial_title_3" >Decline</string>
+    <string name="tutorial_text_3" >Decline</string>
 </resources>

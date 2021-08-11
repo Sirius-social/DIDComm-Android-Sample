@@ -21,11 +21,19 @@ class IndicatorView @JvmOverloads constructor(
 
 
     public var selectedPage: Int = 0
+    public var pagesCount: Int = 0
+
 
     fun selectPage(page : Int){
         selectedPage = page
         setImagesForTabs()
     }
+
+    fun setPages(pages : Int){
+        this.pagesCount = pages
+        setPagesVisibility()
+    }
+
 
     val indicator1: ImageView
     val indicator2: ImageView
@@ -41,7 +49,20 @@ class IndicatorView @JvmOverloads constructor(
         setImagesForTabs()
     }
 
-
+    private fun setPagesVisibility() {
+        if(pagesCount<4){
+            indicator4.visibility = GONE
+        }
+        if(pagesCount<3){
+            indicator3.visibility = GONE
+        }
+        if(pagesCount<2){
+            indicator2.visibility = GONE
+        }
+        if(pagesCount<1){
+            indicator1.visibility = GONE
+        }
+    }
 
     private fun setAllButtonUnselected() {
         indicator1.setImageResource(R.drawable.circle_yellow)

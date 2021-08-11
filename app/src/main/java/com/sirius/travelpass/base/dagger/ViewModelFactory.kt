@@ -6,6 +6,7 @@ import com.sirius.travelpass.ui.activities.auth.AuthActivityModel
 import com.sirius.travelpass.ui.activities.loader.LoaderActivityModel
 import com.sirius.travelpass.ui.activities.main.MainActivityModel
 import com.sirius.travelpass.ui.activities.splash.SplashActivityModel
+import com.sirius.travelpass.ui.activities.tutorial.TutorialActivityModel
 import com.sirius.travelpass.ui.auth.auth_first.AuthFirstViewModel
 import com.sirius.travelpass.ui.auth.auth_fourth.AuthFourthViewModel
 import com.sirius.travelpass.ui.auth.auth_second.AuthSecondViewModel
@@ -86,6 +87,10 @@ abstract class ViewModelModule {
     @ViewModelKey(LoaderActivityModel::class)
     internal abstract fun bindLoaderActivityModel(viewModel: LoaderActivityModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(TutorialActivityModel::class)
+    internal abstract fun bindTutorialActivityModel(viewModel: TutorialActivityModel): ViewModel
 
     /**
      * Fragments viewModel Here

@@ -5,6 +5,7 @@ import com.sirius.travelpass.ui.activities.auth.AuthActivity
 import com.sirius.travelpass.ui.activities.loader.LoaderActivity
 import com.sirius.travelpass.ui.activities.main.MainActivity
 import com.sirius.travelpass.ui.activities.splash.SplashActivity
+import com.sirius.travelpass.ui.activities.tutorial.TutorialActivity
 import com.sirius.travelpass.ui.auth.auth_first.AuthFirstFragment
 import com.sirius.travelpass.ui.auth.auth_fourth.AuthFourthFragment
 import com.sirius.travelpass.ui.auth.auth_second.AuthSecondFragment
@@ -49,6 +50,7 @@ interface AppComponent {
     fun inject(activity: AuthActivity)
     fun inject(activity: SplashActivity)
     fun inject(activity: LoaderActivity)
+    fun inject(activity: TutorialActivity)
 
 
     //Fragments
