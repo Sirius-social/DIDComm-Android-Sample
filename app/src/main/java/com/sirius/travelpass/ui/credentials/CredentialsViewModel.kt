@@ -20,6 +20,7 @@ open class CredentialsViewModel @Inject constructor(
 ) : BaseViewModel(resourcesProvider) {
 
     val adapterListLiveData : MutableLiveData<List<ItemCredentials>> = MutableLiveData(listOf())
+    val userLabelLiveData : MutableLiveData<String> = MutableLiveData(userRepository.myUser?.name)
 
 
 
