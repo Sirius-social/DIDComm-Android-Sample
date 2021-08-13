@@ -20,29 +20,83 @@
 
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center"
             android:padding="12dp"
             android:src="@drawable/logo_sirius"  />
 
         <TextView
-            android:id="@+id/firstHint"
+            android:id="@+id/secondTitle"
             style="@style/Regular19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/auth_second_hint"
+            tools:text="@string/auth_second_title"
+            android:text="@{viewModel.labelTextLiveData}"
             android:textAllCaps="true"
             android:textColor="@color/black" />
+
+        <TextView
+            style="@style/Regular15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/auth_change_label"
+            android:padding="16dp"
+            android:onClick="@{viewModel::onChangeNameClick}"
+            android:textColor="@color/gray_text_hint" />
 
         <com.sirius.travelpass.design.IndicatorView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:id="@+id/indicatorView"
             android:layout_gravity="center" />
 
+        <TextView
+            android:id="@+id/secondHint"
+            style="@style/Regular15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="@string/auth_second_hint"
+            android:textColor="@color/black" />
+
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Regular15"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="@string/auth_pass"
+                android:textAllCaps="true"
+
+                android:textColor="@color/black" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="38dp"
+                android:lines="1"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:id="@+id/passwordText"
+                android:backgroundTint="@color/black" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/nextLayout"
@@ -70,84 +124,6 @@
                 app:tint="@color/defaultColor"
                 android:layout_marginLeft="16dp"
                 android:src="@drawable/btn_next" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/Regular19"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/auth_second_hint_phone"
-                android:textAllCaps="true"
-                android:textColor="@color/black" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:onClick="@{viewModel::onCountryCodeClick}"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:src="@android:drawable/arrow_down_float"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAllCaps="true"
-                    android:text="@{viewModel.countryCodeLiveData}"
-
-                    android:layout_gravity="center"
-                    android:textColor="@color/black"
-                    style="@style/Regular19"/>
-
-            </LinearLayout>
-
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:lines="1"
-                android:inputType="phone"
-                android:singleLine="true"
-                android:id="@+id/phoneEditText"
-                android:backgroundTint="@color/black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/Regular19"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="@string/auth_second_hint_email"
-                android:textAllCaps="true"
-
-                android:textColor="@color/black" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="38dp"
-                android:lines="1"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"
-                android:id="@+id/emailEditText"
-                android:backgroundTint="@color/black" />
-
         </LinearLayout>
     </LinearLayout>
 </layout>

@@ -9,6 +9,8 @@ import com.sirius.travelpass.base.App
 import com.sirius.travelpass.base.ui.BaseActivity
 import com.sirius.travelpass.databinding.ActivityMainBinding
 import com.sirius.travelpass.design.BottomNavView
+import com.sirius.travelpass.ui.auth.auth_third_identity.AuthThirdIdentityFragment
+import com.sirius.travelpass.ui.auth.auth_third_third.AuthThirdThirdFragment
 import com.sirius.travelpass.ui.validating.ErrorFragment
 import com.sirius.travelpass.ui.validating.ValidatingFragment
 
@@ -43,11 +45,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityModel>() {
 
     override fun subscribe() {
         super.subscribe()
-      /*  model.shopCartSize.observe(this, Observer {
-            dataBinding.navigationBottom.setShopcartNumber(
-                it
-            )
-        })*/
 
         model.selectedTab.observe(this, Observer {
             dataBinding.navigationBottom.selectedTabLiveData.value = it
@@ -59,11 +56,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityModel>() {
 
         model.invitationStopLiveData.observe(this, Observer {
             if(it.first){
-                model.bottomNavClick.postValue(BottomNavView.BottomTab.Contacts)
+                model.bottomNavClick.postValue(BottomNavView.BottomTab.Menu)
             }else{
                 popPage(ErrorFragment.newInstance(it.second))
             }
-
         })
     }
 

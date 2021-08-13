@@ -62,6 +62,7 @@ dependencies {
 
     implementation project(':sirius-sdk-android:sdk_android')
 
+    implementation 'com.github.vic797:prowebview:2.2.1'
 
     api 'com.google.guava:guava:30.0-android'
 

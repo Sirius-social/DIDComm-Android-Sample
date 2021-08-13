@@ -51,12 +51,14 @@ abstract class BaseItemMessage {
         Offer,
         OfferAccepted,
         Prover,
-        ProverAccepted
+        ProverAccepted,
+        Question,
+        QuestionAccepted
     }
 
     abstract fun getType() : MessageType
 
-    abstract fun accept()
+    abstract fun accept(comment : String? = null)
 
     abstract fun cancel()
 

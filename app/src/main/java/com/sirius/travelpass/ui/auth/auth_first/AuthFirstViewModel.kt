@@ -8,14 +8,7 @@ import com.sirius.travelpass.repository.UserRepository
 
 import javax.inject.Inject
 
-enum class RegisterStep {
-    Name,
-    Sms,
-    Pin,
-    TypeInfo,
-    Info,
-    Photo
-}
+
 
 open class AuthFirstViewModel @Inject constructor(
     val userRepository: UserRepository,
@@ -31,7 +24,7 @@ open class AuthFirstViewModel @Inject constructor(
 
 
 
-    fun onRegisterClick(v: View) {
+    fun onNextClick(v: View) {
         goToNextScreenLiveData.postValue(true)
     }
 
@@ -42,7 +35,7 @@ open class AuthFirstViewModel @Inject constructor(
 
 
     fun isNextEnabled()  {
-        val isNextEnabled = !userRepository.myUser.name.isNullOrEmpty() && !userRepository.myUser.lastname.isNullOrEmpty()
+        val isNextEnabled = !userRepository.myUser.name.isNullOrEmpty()
         if(isNextEnabled){
             nextVisibilityLiveData.postValue( View.VISIBLE)
         }else{
@@ -55,8 +48,12 @@ open class AuthFirstViewModel @Inject constructor(
         userRepository.myUser.name = name
     }
 
-    fun setUserLastname(lastname: String) {
-        userRepository.myUser.lastname = lastname
+    fun saveUser() {
+        userRepository.saveUserToPref()
+    }
+
+    fun getUserName() : String?{
+        return userRepository.myUser?.name
     }
 
 }

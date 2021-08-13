@@ -64,6 +64,14 @@ open class ChatsViewModel @Inject constructor(
     }
 
     fun onSendClick(v: View) {
+        if (messageText == "question test") {
+            val event = sdkUseCase.sendTestQuestion(item?.id ?: "")
+            event?.let {
+                eventRepository.storeEvent(event.message()?.id ?: "", event, "question")
+                clearTextLiveData.postValue(true)
+            }
+            return
+        }
         val event = sdkUseCase.sendTextMessageForPairwise(item?.id ?: "", messageText)
         event?.let {
             eventRepository.storeEvent(event.message()?.id ?: "", event, "text")

@@ -7,6 +7,8 @@ import com.sirius.travelpass.service.WebSocketService
 import com.sirius.travelpass.utils.DateUtils.PATTERN_ROSTER_STATUS_RESPONSE2
 import com.sirius.sdk.agent.BaseSender
 import com.sirius.sdk.agent.aries_rfc.feature_0095_basic_message.Message
+import com.sirius.sdk.agent.aries_rfc.feature_0113_question_answer.mesages.QuestionMessage
+import com.sirius.sdk.agent.aries_rfc.feature_0113_question_answer.mesages.Recipes
 import com.sirius.sdk.agent.listener.Event
 import com.sirius.sdk_android.SiriusSDK
 import com.sirius.sdk_android.helpers.ChanelHelper
@@ -67,7 +69,7 @@ class SDKUseCase @Inject constructor(private val eventRepository: EventRepositor
         fun initEnd()
     }
 
-    fun initSdk(context: Context, userJid: String, pass: String, onInitListener: OnInitListener?) {
+    fun initSdk(context: Context, userJid: String, pass: String, label : String,onInitListener: OnInitListener?) {
         onInitListener?.initStart()
         val mainDirPath = context.filesDir.absolutePath
         val walletDirPath = mainDirPath + File.separator + "wallet"
@@ -131,7 +133,7 @@ class SDKUseCase @Inject constructor(private val eventRepository: EventRepositor
                 mainDirPath = mainDirPath,
                 genesisPath = poolDirPath2, networkName = "default",
                 mediatorAddress = mediatorAddress,
-                label = "Sirius Sample SDK", baseSender = sender
+                label = label, baseSender = sender
             )
             ChanelHelper.getInstance().initListener()
             SiriusSDK.getInstance().connectToMediator()
@@ -190,6 +192,13 @@ class SDKUseCase @Inject constructor(private val eventRepository: EventRepositor
             }
         })
 
+        ScenarioHelper.getInstance().addScenario("Question", object : QuestionAnswerScenario() {
+            override fun eventStore(id: String, event: Event, accepted: Boolean) {
+                super.eventStore(id, event, accepted)
+                eventRepository.eventStoreLiveData.postValue(id)
+            }
+        })
+
     }
 
 
@@ -204,6 +213,31 @@ class SDKUseCase @Inject constructor(private val eventRepository: EventRepositor
        val message2 =  JSONUtilsAndroid.JSONObjectToString(eventObject)
         val event = Event(pairwise,message2)
         SiriusSDK.getInstance().context.sendTo(message, pairwise)
+        return event
+    }
+
+
+    fun generateInvitation() : String?{
+        val inviter = ScenarioHelper.getInstance().getScenarioBy("Inviter") as? InviterScenario
+        return inviter?.generateInvitation()
+    }
+
+    fun sendTestQuestion(pairwiseDid: String):Event?{
+        val pairwise = PairwiseHelper.getInstance().getPairwise(theirDid = pairwiseDid)
+        val message = QuestionMessage.builder()
+            .setQuestionText("Alice, are you on the phone with Bob from Faber Bank right now?")
+            .setValidResponses(listOf("Yes, it's me","No, that's not me!"))
+            .setQuestionDetail("This is optional fine-print giving context to the question and its various answers.").build()
+        message.messageObj.put("sent_time",DateUtils.getStringFromDate(Date(),PATTERN_ROSTER_STATUS_RESPONSE2,true))
+        val eventObject = JSONObject().put("@type", "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/sirius_rpc/1.0/event")
+            .put("content_type", "application/ssi-agent-wire").put("@id", UUID.randomUUID())
+            .put("message",JSONObject(message.serialize()))
+            .put("me",true)
+        val message2 =  JSONUtilsAndroid.JSONObjectToString(eventObject)
+        val event = Event(pairwise,message2)
+        Thread(Runnable {
+            Recipes.askAndWaitAnswer(SiriusSDK.getInstance().context,message,pairwise)
+        }).start()
         return event
     }
 }

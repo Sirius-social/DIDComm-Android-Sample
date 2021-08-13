@@ -37,6 +37,21 @@ public class PermissionHelper {
         return permissionCheckWriteExternal == PackageManager.PERMISSION_GRANTED;
     }
 
+    public static boolean checkPermissionsOnlyForCamera(Activity activity, int requestCode) {
+        List<String> list = new ArrayList<>();
+        if (ContextCompat.checkSelfPermission(activity,
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+            list.add(Manifest.permission.CAMERA);
+
+        if (list.size() > 0) {
+            String[] perms = new String[list.size()];
+            ActivityCompat.requestPermissions(activity, list.toArray(perms), requestCode);
+            return false;
+        } else
+            return true;
+    }
+
+
     public static boolean checkPermissionsForCamera(Activity activity, int requestCode) {
         List<String> list = new ArrayList<>();
         if (ContextCompat.checkSelfPermission(activity,

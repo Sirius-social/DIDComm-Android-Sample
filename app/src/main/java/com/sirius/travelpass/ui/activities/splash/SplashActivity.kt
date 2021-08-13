@@ -33,13 +33,13 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashActivityModel>(
         if (AppPref.getInstance().isLoggedIn()) {
             LoaderActivity.newInstance(this)
         } else {
-            TutorialActivity.newInstance(this)
+            if(AppPref.getInstance().isTutorialDone()){
+                AuthActivity.newInstance(this)
+            }else{
+                TutorialActivity.newInstance(this)
+            }
         }
         finish()
     }
 
-    override fun onStart() {
-        super.onStart()
-
-    }
 }

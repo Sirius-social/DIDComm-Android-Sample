@@ -18,7 +18,7 @@ class ConnectItemMessage(event: Event) : BaseItemMessage(event) {
 
 
 
-    override fun accept() {
+    override fun accept(comment : String?) {
         ScenarioHelper.getInstance().acceptScenario("Invitee",message?.id ?: "")
     }
 

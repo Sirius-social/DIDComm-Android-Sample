@@ -258,8 +258,13 @@ public abstract class BaseActivity<VB extends ViewDataBinding, M extends BaseAct
     }
 
 
+    boolean isBottomNavigationEnabled = true;
     public boolean isBottomNavigationEnabled() {
-        return true;
+        return isBottomNavigationEnabled;
+    }
+
+    public  void setBottomNavigationEnabled(boolean isBottomNavigationEnabled) {
+         this.isBottomNavigationEnabled = isBottomNavigationEnabled;
     }
 
     public void subscribe() {

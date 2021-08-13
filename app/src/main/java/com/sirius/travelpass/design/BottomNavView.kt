@@ -23,7 +23,8 @@ class BottomNavView @JvmOverloads constructor(
     enum class BottomTab {
         Contacts,
         Menu,
-        Credentials
+        Credentials,
+        Profile
     }
    public  val selectedTabLiveData = MutableLiveData<BottomTab>(BottomTab.Contacts)
 
@@ -90,6 +91,12 @@ class BottomNavView @JvmOverloads constructor(
                 cabinetBtnText.visibility = View.VISIBLE
             }
             BottomTab.Credentials -> {
+                setAllButtonUnselected()
+                viewBack.backgroundTintList = ColorStateList.valueOf(App.getContext().resources.getColor(R.color.grey3))
+                requestsBtnText.visibility = View.INVISIBLE
+                cabinetBtnText.visibility = View.INVISIBLE
+            }
+            BottomTab.Profile -> {
                 setAllButtonUnselected()
                 viewBack.backgroundTintList = ColorStateList.valueOf(App.getContext().resources.getColor(R.color.grey3))
                 requestsBtnText.visibility = View.INVISIBLE

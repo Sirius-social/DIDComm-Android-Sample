@@ -5,9 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import com.sirius.travelpass.R
 import com.sirius.travelpass.base.App
+import com.sirius.travelpass.base.AppPref
 import com.sirius.travelpass.base.ui.BaseActivity
 import com.sirius.travelpass.databinding.ActivityAuthBinding
 import com.sirius.travelpass.ui.auth.auth_first.AuthFirstFragment
+import com.sirius.travelpass.ui.auth.auth_second.AuthSecondFragment
+import com.sirius.travelpass.ui.auth.auth_second_second.AuthSecondSecondFragment
 import com.sirius.travelpass.ui.auth.auth_zero.AuthZeroFragment
 
 
@@ -40,7 +43,11 @@ class AuthActivity : BaseActivity<ActivityAuthBinding, AuthActivityModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        showPage(AuthZeroFragment())
+        if(AppPref.getInstance().getUser()?.name.isNullOrEmpty()){
+            showPage(AuthFirstFragment())
+        }else{
+            showPage(AuthSecondSecondFragment())
+        }
     }
 
     override fun subscribe() {

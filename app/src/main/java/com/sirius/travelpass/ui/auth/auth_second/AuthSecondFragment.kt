@@ -10,7 +10,9 @@ import com.sirius.travelpass.base.App
 import com.sirius.travelpass.base.ui.BaseFragment
 
 import com.sirius.travelpass.databinding.FragmentAuthSecondBinding
+import com.sirius.travelpass.ui.auth.auth_first.AuthFirstFragment
 import com.sirius.travelpass.ui.auth.auth_third.AuthThirdFragment
+import com.sirius.travelpass.ui.auth.auth_third_third.AuthThirdThirdFragment
 
 
 class AuthSecondFragment : BaseFragment<FragmentAuthSecondBinding, AuthSecondViewModel>() {
@@ -19,7 +21,9 @@ class AuthSecondFragment : BaseFragment<FragmentAuthSecondBinding, AuthSecondVie
     override fun setupViews() {
         super.setupViews()
         dataBinding.indicatorView.selectPage(2)
-        dataBinding.phoneEditText.addTextChangedListener(object: TextWatcher{
+
+
+        dataBinding.passwordText.addTextChangedListener(object: TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
@@ -29,23 +33,7 @@ class AuthSecondFragment : BaseFragment<FragmentAuthSecondBinding, AuthSecondVie
             }
 
             override fun afterTextChanged(s: Editable?) {
-                model.setPhone(s.toString())
-                model.isNextEnabled()
-            }
-
-        })
-
-        dataBinding.emailEditText.addTextChangedListener(object: TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                model.setUserEmail(s.toString())
+                model.setUserPassword(s.toString())
                 model.isNextEnabled()
             }
 
@@ -64,7 +52,14 @@ class AuthSecondFragment : BaseFragment<FragmentAuthSecondBinding, AuthSecondVie
         model.goToNextScreenLiveData.observe(this, Observer {
             if (it) {
                 model.goToNextScreenLiveData.value = false
-                baseActivity.pushPage(AuthThirdFragment())
+                baseActivity.pushPage(AuthThirdThirdFragment())
+            }
+        })
+
+        model.changeNameScreenLiveData.observe(this, Observer {
+            if (it) {
+                model.changeNameScreenLiveData.value = false
+                baseActivity.showPage(AuthFirstFragment())
             }
         })
     }

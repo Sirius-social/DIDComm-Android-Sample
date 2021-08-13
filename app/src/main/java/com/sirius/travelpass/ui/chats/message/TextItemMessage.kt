@@ -12,7 +12,7 @@ class TextItemMessage(event: Event?) : BaseItemMessage(event) {
         return MessageType.Text
     }
 
-    override fun accept() {
+    override fun accept(comment : String?) {
 
     }
 

@@ -32,6 +32,7 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.sirius.travelpass.R;
 import com.sirius.travelpass.base.AppPref;
 import com.sirius.travelpass.base.old.BaseActivityOld;
+import com.sirius.travelpass.ui.activities.main.MainActivity;
 
 
 import java.lang.reflect.ParameterizedType;
@@ -320,9 +321,19 @@ public abstract class BaseFragment<VB extends ViewDataBinding, VM extends BaseVi
         getBaseActivity().onBackPressed();
     }
 
-    public void hideBottomNavigationView() {
+
+    boolean isBottomNavigationEnabled = true;
+
+
+    public boolean isBottomNavigationEnabled() {
+        return isBottomNavigationEnabled;
+    }
+
+    public void setupBottomNavigationView() {
         if (getActivity() != null) {
-          //   ((MainActivity) getActivity()).hideShowBottomNavigation(isHideBottomNavigationView());
+            if(getActivity() instanceof MainActivity){
+                ((MainActivity) getActivity()).setBottomNavigationEnabled(isBottomNavigationEnabled());
+            }
         }
     }
 
@@ -346,7 +357,7 @@ public abstract class BaseFragment<VB extends ViewDataBinding, VM extends BaseVi
         super.onResume();
         setupToolbar();
         setupUnauthBottomBar();
-        hideBottomNavigationView();
+        setupBottomNavigationView();
         model.onResume();
     }
 

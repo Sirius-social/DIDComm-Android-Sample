@@ -2,13 +2,12 @@ package com.sirius.travelpass.ui.chats.holder
 
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import com.sirius.travelpass.databinding.ItemMessageConnectBinding
-import com.sirius.travelpass.databinding.ItemMessageOfferBinding
-import com.sirius.travelpass.databinding.ItemMessageProverBinding
-import com.sirius.travelpass.databinding.ItemMessageTextBinding
+import com.sirius.travelpass.databinding.*
+import com.sirius.travelpass.ui.chats.QuestionAnswerAdapter
 import com.sirius.travelpass.ui.chats.message.BaseItemMessage
 import com.sirius.travelpass.ui.chats.message.OfferItemMessage
 import com.sirius.travelpass.ui.chats.message.ProverItemMessage
+import com.sirius.travelpass.ui.chats.message.QuestionItemMessage
 import com.sirius.travelpass.ui.credentials.CredentialsDetailAdapter
 
 class TextMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
@@ -110,3 +109,36 @@ class ConnectedMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
     }
 }
 
+
+class QuestionMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
+    var binding: ItemMessageQuestionBinding? =
+        DataBindingUtil.bind<ItemMessageQuestionBinding>(itemView)
+
+    override fun bind(item: BaseItemMessage) {
+        val question = item as QuestionItemMessage
+        binding?.item = question
+        val adapter = QuestionAnswerAdapter()
+        adapter.setOnAdapterItemClick {
+            item.accept(it.title)
+        }
+        adapter.setDataList(question.answerList)
+        binding?.answerList?.isNestedScrollingEnabled = false
+        binding?.answerList?.adapter = adapter
+    }
+}
+
+class QuestionAcceptedMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
+    // var binding: ItemMessageTextBinding? = DataBindingUtil.bind<ItemMessageTextBinding>(itemView)
+    override fun bind(item: BaseItemMessage) {
+        //      binding?.item = item
+
+    }
+}
+
+class QuestionTimeoutMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
+    // var binding: ItemMessageTextBinding? = DataBindingUtil.bind<ItemMessageTextBinding>(itemView)
+    override fun bind(item: BaseItemMessage) {
+        //      binding?.item = item
+
+    }
+}

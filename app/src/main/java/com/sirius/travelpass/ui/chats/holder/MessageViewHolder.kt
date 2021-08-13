@@ -33,6 +33,12 @@ open class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
                 if (type == BaseItemMessage.MessageType.ProverAccepted.ordinal) {
                     return ProverAcceptedMessageViewHolder(itemView)
                 }
+                if (type == BaseItemMessage.MessageType.Question.ordinal) {
+                    return QuestionMessageViewHolder(itemView)
+                }
+                if (type == BaseItemMessage.MessageType.QuestionAccepted.ordinal) {
+                    return QuestionAcceptedMessageViewHolder(itemView)
+                }
                 return MessageViewHolder(itemView)
             }
 
@@ -59,6 +65,14 @@ open class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
                 if (type == BaseItemMessage.MessageType.ProverAccepted.ordinal) {
                     return R.layout.item_message_prover_accepted
+                }
+
+                if (type == BaseItemMessage.MessageType.Question.ordinal) {
+                    return R.layout.item_message_question
+                }
+
+                if (type == BaseItemMessage.MessageType.QuestionAccepted.ordinal) {
+                    return R.layout.item_message_question_accepted
                 }
                 
                 return R.layout.item_message_text

@@ -53,7 +53,7 @@ class OfferItemMessage(event: Event) : BaseItemMessage(event) {
     }
 
 
-    override fun accept() {
+    override fun accept(comment : String?) {
         ScenarioHelper.getInstance().acceptScenario("Holder", message?.id ?: "")
     }
 

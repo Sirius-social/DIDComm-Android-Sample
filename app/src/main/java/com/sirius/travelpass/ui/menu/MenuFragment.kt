@@ -9,6 +9,7 @@ import com.sirius.travelpass.databinding.FragmentMenuBinding
 import com.sirius.travelpass.models.ui.ItemActions
 import com.sirius.travelpass.models.ui.ItemCredentials
 import com.sirius.travelpass.transform.EventTransform
+import com.sirius.travelpass.ui.auth.auth_third_third.AuthThirdThirdFragment
 import com.sirius.travelpass.ui.chats.ChatsFragment
 import com.sirius.travelpass.ui.credentials.CredentialsListAdapter
 import com.sirius.travelpass.ui.qrcode.ShowQrFragment
@@ -29,6 +30,8 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>() {
            val itemContact =   EventTransform.eventToItemContacts(event)
            baseActivity.pushPage(ChatsFragment.newInstance(itemContact))
         }
+
+        childFragmentManager.beginTransaction().replace(R.id.contentFrame, CredentialFaceFragment()).commit()
     }
 
     override fun getLayoutRes(): Int {

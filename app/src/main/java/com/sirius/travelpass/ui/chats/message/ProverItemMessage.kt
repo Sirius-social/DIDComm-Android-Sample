@@ -85,7 +85,7 @@ class ProverItemMessage(event: Event) : BaseItemMessage(event) {
     }
 
 
-    override fun accept() {
+    override fun accept(comment : String?) {
         ScenarioHelper.getInstance().acceptScenario("Prover", message?.id ?: "")
     }
 

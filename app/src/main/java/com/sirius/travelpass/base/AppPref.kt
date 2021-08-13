@@ -66,6 +66,14 @@ class AppPref {
         return deviceId
     }
 
+    fun isTutorialDone() : Boolean{
+        return prefs.getBoolean("tutorialIsDone",false)
+    }
+
+    fun setTutorialDone(isDone : Boolean){
+        prefs.edit().putBoolean("tutorialIsDone",isDone).apply()
+    }
+
     fun getSalt(): String {
         return getDeviceId().substring(5)
     }
@@ -116,7 +124,7 @@ class AppPref {
 
 
     fun isLoggedIn(): Boolean {
-        val isLoggedIn = getUser() != null
+        val isLoggedIn = getUser()?.uid != null
         return isLoggedIn
     }
 

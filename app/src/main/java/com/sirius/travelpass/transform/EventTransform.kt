@@ -7,6 +7,7 @@ import com.sirius.travelpass.ui.chats.message.*
 import com.sirius.sdk.agent.aries_rfc.feature_0036_issue_credential.messages.OfferCredentialMessage
 import com.sirius.sdk.agent.aries_rfc.feature_0037_present_proof.messages.RequestPresentationMessage
 import com.sirius.sdk.agent.aries_rfc.feature_0095_basic_message.Message
+import com.sirius.sdk.agent.aries_rfc.feature_0113_question_answer.mesages.QuestionMessage
 import com.sirius.sdk.agent.aries_rfc.feature_0160_connection_protocol.messages.ConnRequest
 import com.sirius.sdk.agent.aries_rfc.feature_0160_connection_protocol.messages.Invitation
 import com.sirius.sdk.agent.listener.Event
@@ -52,6 +53,10 @@ class EventTransform() {
             if (message is RequestPresentationMessage) {
                 return ProverItemMessage(event)
             }
+            if (message is QuestionMessage) {
+                return QuestionItemMessage(event)
+            }
+
             if (message is Message) {
                 return TextItemMessage(event)
             }

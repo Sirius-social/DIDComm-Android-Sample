@@ -10,14 +10,18 @@ import com.sirius.travelpass.ui.activities.tutorial.TutorialActivityModel
 import com.sirius.travelpass.ui.auth.auth_first.AuthFirstViewModel
 import com.sirius.travelpass.ui.auth.auth_fourth.AuthFourthViewModel
 import com.sirius.travelpass.ui.auth.auth_second.AuthSecondViewModel
+import com.sirius.travelpass.ui.auth.auth_second_second.AuthSecondSecondViewModel
 import com.sirius.travelpass.ui.auth.auth_third.AuthThirdViewModel
 import com.sirius.travelpass.ui.auth.auth_third_identity.AuthThirdChooseIdViewModel
 import com.sirius.travelpass.ui.auth.auth_third_identity.AuthThirdIdentityViewModel
+import com.sirius.travelpass.ui.auth.auth_third_third.AuthThirdThirdViewModel
 import com.sirius.travelpass.ui.auth.auth_zero.AuthZeroViewModel
 import com.sirius.travelpass.ui.chats.ChatsViewModel
 import com.sirius.travelpass.ui.contacts.ContactsViewModel
 import com.sirius.travelpass.ui.credentials.CredentialsViewModel
+import com.sirius.travelpass.ui.menu.CredentialFaceViewModel
 import com.sirius.travelpass.ui.menu.MenuViewModel
+import com.sirius.travelpass.ui.profile.ProfileViewModel
 import com.sirius.travelpass.ui.qrcode.ScanQrViewModel
 import com.sirius.travelpass.ui.qrcode.ShowQrViewModel
 import com.sirius.travelpass.ui.validating.ErrorViewModel
@@ -114,8 +118,23 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(AuthSecondSecondViewModel::class)
+    internal abstract fun bindAuthSecondSecondViewModel(viewModel: AuthSecondSecondViewModel): ViewModel
+
+
+
+    @Binds
+    @IntoMap
     @ViewModelKey(AuthThirdViewModel::class)
     internal abstract fun bindAuthThirdViewModel(viewModel: AuthThirdViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AuthThirdThirdViewModel::class)
+    internal abstract fun bindAuthThirdThirdViewModel(viewModel: AuthThirdThirdViewModel): ViewModel
+
+
+
 
     @Binds
     @IntoMap
@@ -153,6 +172,12 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(CredentialFaceViewModel::class)
+    internal abstract fun bindCredentialFaceViewModel(viewModel: CredentialFaceViewModel): ViewModel
+
+
+    @Binds
+    @IntoMap
     @ViewModelKey(ScanQrViewModel::class)
     internal abstract fun bindScanQrViewModel(viewModel: ScanQrViewModel): ViewModel
 
@@ -176,5 +201,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ErrorViewModel::class)
     internal abstract fun bindErrorViewModel(viewModel: ErrorViewModel): ViewModel
+
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileViewModel::class)
+    internal abstract fun bindProfileViewModel(viewModel: ProfileViewModel): ViewModel
 
 }

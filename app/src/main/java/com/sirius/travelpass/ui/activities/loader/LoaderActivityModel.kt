@@ -22,9 +22,10 @@ class LoaderActivityModel @Inject constructor(
     val initEndLiveData = MutableLiveData<Boolean>()
 
         fun initSdk(context: Context){
-            val login = userRepository.myUser.name ?: ""
+            val login = userRepository.myUser.uid ?: ""
             val pass = userRepository.myUser.pass ?:""
-            sdkUseCase.initSdk(context,login,pass, object : SDKUseCase.OnInitListener{
+            val label = userRepository.myUser.name ?:""
+            sdkUseCase.initSdk(context,login,pass, label,object : SDKUseCase.OnInitListener{
                 override fun initStart() {
                     initStartLiveData.postValue(true)
                 }

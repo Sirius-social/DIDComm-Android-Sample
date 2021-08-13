@@ -4,7 +4,6 @@ import com.google.zxing.Result
 import com.sirius.travelpass.R
 import com.sirius.travelpass.base.App
 import com.sirius.travelpass.base.ui.BaseFragment
-
 import com.sirius.travelpass.databinding.FragmentScanQrBinding
 import com.sirius.travelpass.design.views.SiriusScannerView
 import com.sirius.travelpass.utils.PermissionHelper

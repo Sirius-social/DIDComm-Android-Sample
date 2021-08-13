@@ -20,7 +20,7 @@ class AuthThirdFragment : BaseFragment<FragmentAuthThirdBinding, AuthThirdViewMo
     override fun setupViews() {
         super.setupViews()
 
-        dataBinding.indicatorView.selectPage(3)
+        dataBinding.indicatorView.selectPage(4)
 
     }
 

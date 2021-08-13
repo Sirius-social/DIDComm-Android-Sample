@@ -79,6 +79,7 @@ class TutorialActivity : BaseActivity<ActivityTutorialBinding, TutorialActivityM
         model.startClickLiveData.observe(this, Observer {
             if(it){
                 finish()
+                AppPref.getInstance().setTutorialDone(true)
                 AuthActivity.newInstance(this)
             }
 

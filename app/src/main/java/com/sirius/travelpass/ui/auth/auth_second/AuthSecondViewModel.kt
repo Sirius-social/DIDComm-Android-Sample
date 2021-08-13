@@ -2,6 +2,7 @@ package com.sirius.travelpass.ui.auth.auth_second
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import com.sirius.travelpass.R
 import com.sirius.travelpass.base.providers.ResourcesProvider
 import com.sirius.travelpass.base.ui.BaseViewModel
 import com.sirius.travelpass.repository.UserRepository
@@ -21,8 +22,10 @@ open class AuthSecondViewModel @Inject constructor(
     val registerBtnTextLiveData = MutableLiveData<String>("")
     val alreadyExistAccountTextLiveData = MutableLiveData<CharSequence>()
     val goToNextScreenLiveData = MutableLiveData<Boolean>()
+    val changeNameScreenLiveData = MutableLiveData<Boolean>()
     val nextVisibilityLiveData = MutableLiveData<Int>()
     val countryCodeLiveData = MutableLiveData<String>("+1")
+    val labelTextLiveData = MutableLiveData<String>("")
 
 
 
@@ -30,19 +33,20 @@ open class AuthSecondViewModel @Inject constructor(
         goToNextScreenLiveData.postValue(true)
     }
 
-    fun onCountryCodeClick(v: View){
-
+    fun onChangeNameClick(v: View){
+        changeNameScreenLiveData.postValue(true)
     }
 
     override fun setupViews() {
         super.setupViews()
         isNextEnabled()
+        labelTextLiveData.postValue(resourceProvider.getString(R.string.auth_second_title,userRepository.myUser.name ?: ""))
     }
 
 
 
     fun isNextEnabled()  {
-        val isNextEnabled = !userRepository.myUser.phone.isNullOrEmpty() && !userRepository.myUser.email.isNullOrEmpty()
+        val isNextEnabled = !userRepository.myUser.pass.isNullOrEmpty()
         if(isNextEnabled){
             nextVisibilityLiveData.postValue( View.VISIBLE)
         }else{
@@ -51,13 +55,11 @@ open class AuthSecondViewModel @Inject constructor(
 
     }
 
-    fun setUserEmail(emai: String) {
-        userRepository.myUser.email = emai
+    fun setUserPassword(pass: String) {
+        userRepository.myUser.pass = pass
     }
 
-    fun setPhone(phone: String) {
-        userRepository.myUser.phone = phone
-    }
+
 
 }
 
