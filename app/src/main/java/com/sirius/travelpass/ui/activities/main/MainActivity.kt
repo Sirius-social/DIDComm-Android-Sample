@@ -11,6 +11,8 @@ import com.sirius.travelpass.databinding.ActivityMainBinding
 import com.sirius.travelpass.design.BottomNavView
 import com.sirius.travelpass.ui.auth.auth_third_identity.AuthThirdIdentityFragment
 import com.sirius.travelpass.ui.auth.auth_third_third.AuthThirdThirdFragment
+import com.sirius.travelpass.ui.chats.ChatsFragment
+import com.sirius.travelpass.ui.menu.MenuFragment
 import com.sirius.travelpass.ui.validating.ErrorFragment
 import com.sirius.travelpass.ui.validating.ValidatingFragment
 
@@ -51,15 +53,19 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityModel>() {
         })
 
         model.invitationStartLiveData.observe(this, Observer {
-                pushPage(ValidatingFragment())
+            // pushPage(ValidatingFragment())
+            val item = model.getMessage(it)
+            pushPage(ChatsFragment.newInstance(item))
         })
 
-        model.invitationStopLiveData.observe(this, Observer {
-            if(it.first){
-                model.bottomNavClick.postValue(BottomNavView.BottomTab.Menu)
-            }else{
-                popPage(ErrorFragment.newInstance(it.second))
-            }
+        model.invitationErrorLiveData.observe(this, Observer {
+            pushPage(ErrorFragment.newInstance(it.second))
+        })
+
+        model.invitationSuccessLiveData.observe(this, Observer {
+            val item = model.getMessage(it)
+            showPage(MenuFragment())
+            pushPage(ChatsFragment.newInstance(item))
         })
     }
 

@@ -44,6 +44,7 @@ class LoaderActivity : BaseActivity<ActivityLoaderBinding, LoaderActivityModel>(
     override fun subscribe() {
         super.subscribe()
         model.initEndLiveData.observe(this, Observer {
+            finishAffinity()
             MainActivity.newInstance(this)
         })
     }

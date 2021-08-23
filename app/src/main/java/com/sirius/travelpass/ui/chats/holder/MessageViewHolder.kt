@@ -21,10 +21,16 @@ open class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
                 if (type == BaseItemMessage.MessageType.Connected.ordinal) {
                     return ConnectedMessageViewHolder(itemView)
                 }
+                if (type == BaseItemMessage.MessageType.ConnectError.ordinal) {
+                    return ConnectedMessageViewHolder(itemView)
+                }
                 if (type == BaseItemMessage.MessageType.Offer.ordinal) {
                     return OfferMessageViewHolder(itemView)
                 }
                 if (type == BaseItemMessage.MessageType.OfferAccepted.ordinal) {
+                    return OfferAcceptedMessageViewHolder(itemView)
+                }
+                if (type == BaseItemMessage.MessageType.OfferError.ordinal) {
                     return OfferAcceptedMessageViewHolder(itemView)
                 }
                 if (type == BaseItemMessage.MessageType.Prover.ordinal) {
@@ -33,10 +39,16 @@ open class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
                 if (type == BaseItemMessage.MessageType.ProverAccepted.ordinal) {
                     return ProverAcceptedMessageViewHolder(itemView)
                 }
+                if (type == BaseItemMessage.MessageType.ProverError.ordinal) {
+                    return ProverAcceptedMessageViewHolder(itemView)
+                }
                 if (type == BaseItemMessage.MessageType.Question.ordinal) {
                     return QuestionMessageViewHolder(itemView)
                 }
                 if (type == BaseItemMessage.MessageType.QuestionAccepted.ordinal) {
+                    return QuestionAcceptedMessageViewHolder(itemView)
+                }
+                if (type == BaseItemMessage.MessageType.QuestionError.ordinal) {
                     return QuestionAcceptedMessageViewHolder(itemView)
                 }
                 return MessageViewHolder(itemView)
@@ -52,18 +64,26 @@ open class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
                 if (type == BaseItemMessage.MessageType.Connected.ordinal) {
                     return R.layout.item_message_connect_accepted
                 }
+                if (type == BaseItemMessage.MessageType.ConnectError.ordinal) {
+                    return R.layout.item_message_connect_accepted
+                }
                 if (type == BaseItemMessage.MessageType.Offer.ordinal) {
                     return R.layout.item_message_offer
                 }
                 if (type == BaseItemMessage.MessageType.OfferAccepted.ordinal) {
                     return R.layout.item_message_offer_accepted
                 }
-
+                if (type == BaseItemMessage.MessageType.OfferError.ordinal) {
+                    return R.layout.item_message_offer_accepted
+                }
                 if (type == BaseItemMessage.MessageType.Prover.ordinal) {
                     return R.layout.item_message_prover
                 }
 
                 if (type == BaseItemMessage.MessageType.ProverAccepted.ordinal) {
+                    return R.layout.item_message_prover_accepted
+                }
+                if (type == BaseItemMessage.MessageType.ProverError.ordinal) {
                     return R.layout.item_message_prover_accepted
                 }
 
@@ -72,6 +92,9 @@ open class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
                 }
 
                 if (type == BaseItemMessage.MessageType.QuestionAccepted.ordinal) {
+                    return R.layout.item_message_question_accepted
+                }
+                if (type == BaseItemMessage.MessageType.QuestionError.ordinal) {
                     return R.layout.item_message_question_accepted
                 }
                 

@@ -19,6 +19,9 @@ import com.sirius.sdk_android.utils.DateUtils
 import com.sirius.sdk_android.utils.HashUtils
 import com.sirius.sdk_android.utils.JSONUtilsAndroid
 import com.sirius.travelpass.repository.EventRepository
+import com.sirius.travelpass.repository.MessageRepository
+import com.sirius.travelpass.repository.models.LocalMessage
+import com.sirius.travelpass.sirius_sdk_impl.scenario.*
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -32,7 +35,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SDKUseCase @Inject constructor(private val eventRepository: EventRepository) {
+class SDKUseCase @Inject constructor(
+    private val eventRepository: EventRepository,
+    private val messageRepository: MessageRepository) {
 
 
     public fun startSocketService(context: Context) {
@@ -85,7 +90,7 @@ class SDKUseCase @Inject constructor(private val eventRepository: EventRepositor
         val poolDirPath2 = mainDirPath + File.separator + "poolDir"+ File.separator + "pool3.txn"
       //  Utils.copyRawFile(context, R.raw.pool_transactions_genesis, poolDirPath)
         //     val path = "android.resource://" + getPackageName().toString() + "/" + R.raw.pool_transactions_genesis
-        val mediatorAddress = "ws://mediator.socialsirius.com:8000/ws"
+
 
         val sender = object : BaseSender() {
             override fun sendTo(endpoint: String, data: ByteArray): Boolean {
@@ -122,7 +127,8 @@ class SDKUseCase @Inject constructor(private val eventRepository: EventRepositor
 
 
         }
-
+        val mediatorAddress = "wss://mediator.socialsirius.com/ws"
+        val recipientKeys = "DjgWN49cXQ6M6JayBkRCwFsywNhomn8gdAXHJ4bb98im"
         /* SiriusSDK.getInstance().initialize(
              this, "https://socialsirius.com/endpoint/48fa9281-d6b1-4b17-901d-7db9e64b70b1/",
              "https://socialsirius.com", walletId, passForWallet, mainDirPath, "Sirius Sample SDK"
@@ -132,7 +138,7 @@ class SDKUseCase @Inject constructor(private val eventRepository: EventRepositor
                 mycontext = context, alias = walletId, pass = passForWallet,
                 mainDirPath = mainDirPath,
                 genesisPath = poolDirPath2, networkName = "default",
-                mediatorAddress = mediatorAddress,
+                mediatorAddress = mediatorAddress,recipientKeys = listOf(recipientKeys),
                 label = label, baseSender = sender
             )
             ChanelHelper.getInstance().initListener()
@@ -144,76 +150,26 @@ class SDKUseCase @Inject constructor(private val eventRepository: EventRepositor
 
 
     private fun initScenario() {
-        ScenarioHelper.getInstance().addScenario("Inviter", object : InviterScenario() {
-            override fun onScenarioStart() {
-                eventRepository.invitationStartLiveData.postValue(true)
-            }
-
-            override fun onScenarioEnd(success: Boolean, error: String?) {
-                eventRepository.invitationStopLiveData.postValue(Pair(success, error))
-            }
-        })
-
-        ScenarioHelper.getInstance().addScenario("Invitee", object : InviteeScenario() {
-            override fun onScenarioStart() {
-                eventRepository.invitationStartLiveData.postValue(true)
-            }
-
-            override fun onScenarioEnd(success: Boolean, error: String?) {
-                eventRepository.invitationStopLiveData.postValue(Pair(success, error))
-            }
-
-            override fun eventStore(id: String, event: Event, accepted: Boolean) {
-                super.eventStore(id, event, accepted)
-                eventRepository.eventStoreLiveData.postValue(id)
-            }
-
-        })
-        ScenarioHelper.getInstance().addScenario("Holder", object : HolderScenario() {
-
-            override fun eventStore(id: String, event: Event, accepted: Boolean) {
-                super.eventStore(id, event, accepted)
-                eventRepository.eventStoreLiveData.postValue(id)
-            }
-
-        })
-
-        ScenarioHelper.getInstance().addScenario("Text", object : TextScenario() {
-            override fun eventStore(id: String, event: Event, accepted: Boolean) {
-                super.eventStore(id, event, accepted)
-                eventRepository.eventStoreLiveData.postValue(id)
-            }
-        })
-
-        ScenarioHelper.getInstance().addScenario("Prover", object : ProverScenario() {
-            override fun eventStore(id: String, event: Event, accepted: Boolean) {
-                super.eventStore(id, event, accepted)
-                eventRepository.eventStoreLiveData.postValue(id)
-            }
-        })
-
-        ScenarioHelper.getInstance().addScenario("Question", object : QuestionAnswerScenario() {
-            override fun eventStore(id: String, event: Event, accepted: Boolean) {
-                super.eventStore(id, event, accepted)
-                eventRepository.eventStoreLiveData.postValue(id)
-            }
-        })
+        ScenarioHelper.getInstance().addScenario("Inviter",InviterScenarioImpl(messageRepository))
+        ScenarioHelper.getInstance().addScenario("Invitee", InviteeScenarioImp(messageRepository,eventRepository))
+        ScenarioHelper.getInstance().addScenario("Holder", HolderScenarioImp(messageRepository,eventRepository))
+        ScenarioHelper.getInstance().addScenario("Text",TextScenarioImpl(messageRepository,eventRepository))
+        ScenarioHelper.getInstance().addScenario("Prover", ProverScenarioImpl(messageRepository,eventRepository))
+        ScenarioHelper.getInstance().addScenario("Question", QuestionAnswerScenarioImp(messageRepository,eventRepository))
 
     }
 
 
-    fun sendTextMessageForPairwise(pairwiseDid: String, messageText: String?)  :Event? {
+    fun sendTextMessageForPairwise(pairwiseDid: String, messageText: String?)  : LocalMessage {
         val pairwise = PairwiseHelper.getInstance().getPairwise(theirDid = pairwiseDid)
         val message = Message.builder().setContent(messageText).build()
-        message.messageObj.put("sent_time",DateUtils.getStringFromDate(Date(),PATTERN_ROSTER_STATUS_RESPONSE2,true))
-        val eventObject = JSONObject().put("@type", "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/sirius_rpc/1.0/event")
-                .put("content_type", "application/ssi-agent-wire").put("@id", UUID.randomUUID())
-                .put("message",JSONObject(message.serialize()))
-                .put("me",true)
-       val message2 =  JSONUtilsAndroid.JSONObjectToString(eventObject)
-        val event = Event(pairwise,message2)
+        val localMessage = LocalMessage(pairwiseDid = pairwiseDid)
+        localMessage.isMine = true
+        localMessage.type = "text"
+        localMessage.message = message.serialize()
+        localMessage.sentTime = Date()
         SiriusSDK.getInstance().context.sendTo(message, pairwise)
-        return event
+        return localMessage
     }
 
 
@@ -222,22 +178,20 @@ class SDKUseCase @Inject constructor(private val eventRepository: EventRepositor
         return inviter?.generateInvitation()
     }
 
-    fun sendTestQuestion(pairwiseDid: String):Event?{
+    fun sendTestQuestion(pairwiseDid: String):LocalMessage{
         val pairwise = PairwiseHelper.getInstance().getPairwise(theirDid = pairwiseDid)
         val message = QuestionMessage.builder()
             .setQuestionText("Alice, are you on the phone with Bob from Faber Bank right now?")
             .setValidResponses(listOf("Yes, it's me","No, that's not me!"))
             .setQuestionDetail("This is optional fine-print giving context to the question and its various answers.").build()
-        message.messageObj.put("sent_time",DateUtils.getStringFromDate(Date(),PATTERN_ROSTER_STATUS_RESPONSE2,true))
-        val eventObject = JSONObject().put("@type", "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/sirius_rpc/1.0/event")
-            .put("content_type", "application/ssi-agent-wire").put("@id", UUID.randomUUID())
-            .put("message",JSONObject(message.serialize()))
-            .put("me",true)
-        val message2 =  JSONUtilsAndroid.JSONObjectToString(eventObject)
-        val event = Event(pairwise,message2)
+        val localMessage = LocalMessage(pairwiseDid = pairwiseDid)
+        localMessage.isMine = true
+        localMessage.sentTime = Date()
+        localMessage.type = "question"
+        localMessage.message = message.serialize()
         Thread(Runnable {
             Recipes.askAndWaitAnswer(SiriusSDK.getInstance().context,message,pairwise)
         }).start()
-        return event
+        return localMessage
     }
 }

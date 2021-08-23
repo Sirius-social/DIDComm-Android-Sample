@@ -75,6 +75,7 @@
 
     <string name="connected_at">connected</string>
     <string name="issued_at">issued</string>
+    <string name="requested_at">requested</string>
     <string name="details">Details</string>
     <string name="filter_date_credential">Date issued</string>
     <string name="filter_date_recent">Recent</string>
@@ -86,14 +87,18 @@
 
     <string name="action_yes" >Yes</string>
     <string name="action_decline" >Decline</string>
+    <string name="action_error" >Error</string>
 
 
 
     <string name="message_connected_successfully" >Connection Approved</string>
+    <string name="message_connected_error" >Connection canceled</string>
     <string name="message_offer_successfully" >Credentials accepted</string>
     <string name="message_credentials_offer" >Credentials offered</string>
     <string name="message_credentials_request" >Credentials requested</string>
+    <string name="message_credentials_request_declined" >Credentials request declined</string>
     <string name="message_credentials_request_succes" >Credentials approved</string>
+    <string name="message_credentials_declined" >Credentials declined</string>
     <string name="message_question_answered" >Question answered</string>
     <string name="message_question_title" >Question</string>
 

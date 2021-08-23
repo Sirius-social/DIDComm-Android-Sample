@@ -105,6 +105,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/connectBtn"
             android:id="@+id/contentFrame"
+
             android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>

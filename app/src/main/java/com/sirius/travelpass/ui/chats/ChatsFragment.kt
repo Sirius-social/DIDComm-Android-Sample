@@ -31,6 +31,7 @@ class ChatsFragment : BaseFragment<FragmentChatsBinding, ChatsViewModel>() {
     override fun setupViews() {
         model.item = arguments?.getSerializable("item") as? ItemContacts
         super.setupViews()
+        adapter.lifecycle = this
         dataBinding.messagesRecyclerView.adapter = adapter
         dataBinding.messageText.addTextChangedListener {
             model.messageText = it.toString()

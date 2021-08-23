@@ -48,7 +48,7 @@
                     android:textSize="10sp"
                     tools:text="11:22 11.12.2021"
                     android:textColor="@{ContextCompat.getColor(context, item.mine ? R.color.white : R.color.black)}"
-                    android:text="@{DateUtils.getStringFromDate(item.date, DateUtils.PATTERN_ddMMyyyyHHmm,false)}"/>
+                    android:text=""/>
             </LinearLayout>
 
 

@@ -66,12 +66,20 @@ class AppPref {
         return deviceId
     }
 
-    fun isTutorialDone() : Boolean{
-        return prefs.getBoolean("tutorialIsDone",false)
+    fun isTutorialDone(): Boolean {
+        return prefs.getBoolean("tutorialIsDone", false)
     }
 
-    fun setTutorialDone(isDone : Boolean){
-        prefs.edit().putBoolean("tutorialIsDone",isDone).apply()
+    fun setTutorialDone(isDone: Boolean) {
+        prefs.edit().putBoolean("tutorialIsDone", isDone).apply()
+    }
+
+    fun isShowFaceCredential(): Boolean {
+        return prefs.getBoolean("showFaceCredential", true)
+    }
+
+    fun setShowFaceCredential(show: Boolean) {
+        prefs.edit().putBoolean("showFaceCredential", show).apply()
     }
 
     fun getSalt(): String {
@@ -94,7 +102,6 @@ class AppPref {
         val string = prefs.getString(tokenKey, "") ?: ""
         return getEncryptionDefault().decryptOrNull(string)
     }
-
 
 
     fun setUser(user: User?) {
@@ -120,7 +127,6 @@ class AppPref {
         }
         return null
     }
-
 
 
     fun isLoggedIn(): Boolean {

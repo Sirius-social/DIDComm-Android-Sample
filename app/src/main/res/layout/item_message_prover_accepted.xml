@@ -13,6 +13,7 @@
             android:layout_margin="16dp"
             app:cardBackgroundColor="@color/blue"
             app:cardCornerRadius="8dp"
+            android:id="@+id/cardView"
             app:cardUseCompatPadding="true"
             app:contentPadding="16dp">
 
@@ -26,7 +27,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="16dp"
-                    app:tint="@color/yellow"
+                    app:tint="@color/white"
                     android:src="@drawable/ic_question" />
 
                 <LinearLayout
@@ -39,13 +40,14 @@
                         style="@style/Regular19"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:id="@+id/text"
                         android:text="@string/message_credentials_request_succes"
                         android:textColor="@color/white" />
 
                     <TextView
                         style="@style/Regular15"
                         android:layout_width="match_parent"
-
+                        android:id="@+id/dateText"
                         android:layout_height="wrap_content"
                         android:text="12.02.2021 11:21"
                         android:textColor="@color/white" />

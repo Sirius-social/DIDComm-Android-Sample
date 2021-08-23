@@ -7,10 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.LayoutRes;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.sirius.travelpass.base.App;
+import com.sirius.travelpass.ui.chats.ChatsFragment;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,8 @@ public abstract class BaseMultiRecyclerViewAdapter<T> extends RecyclerView.Adapt
 
 
     public LayoutInflater inflater;
+
+    public LifecycleOwner lifecycle;
 
     public OnAdapterItemClick getOnAdapterItemClick() {
         return onAdapterItemClick;

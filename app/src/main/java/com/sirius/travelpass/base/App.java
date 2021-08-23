@@ -4,15 +4,22 @@ import android.content.Context;
 import android.os.StrictMode;
 
 import androidx.multidex.MultiDexApplication;
+import androidx.room.Room;
 
 import com.sirius.travelpass.base.dagger.AppComponent;
+
 import com.sirius.travelpass.base.dagger.DaggerAppComponent;
+import com.sirius.travelpass.repository.AppDatabase;
 
 
 public class App extends MultiDexApplication {
 
     private static App instance;
     private AppComponent appComponent;
+
+
+
+    public  AppDatabase db;
     public static App getInstance() {
         return instance;
     }
@@ -28,6 +35,7 @@ public class App extends MultiDexApplication {
         initializeDagger();
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
+
     }
 
     @Override
@@ -36,7 +44,9 @@ public class App extends MultiDexApplication {
 
         instance = this;
         initialize();
+       // db = AppDatabase.Companion.getDatabase(getContext());
     }
+
 
     private static void initializeDagger() {
         getInstance().appComponent = DaggerAppComponent

@@ -37,7 +37,7 @@ class EventTransform() {
 
         fun eventToBaseItemMessage(event: Event?): BaseItemMessage {
             if (event == null) {
-                return TextItemMessage(null)
+                return TextItemMessage(event = null)
             }
             val message = event.message()
             if (message is Invitation) {
@@ -60,7 +60,7 @@ class EventTransform() {
             if (message is Message) {
                 return TextItemMessage(event)
             }
-            return TextItemMessage(null)
+            return TextItemMessage(event = null)
         }
 
         fun eventToItemActions(event: Event?): ItemActions {
@@ -81,7 +81,7 @@ class EventTransform() {
             return ItemActions(message.id, type, hint)
         }
 
-        fun itemActionToEvent(itemActions: ItemActions?, eventRepository: EventRepository): Event? {
+       /* fun itemActionToEvent(itemActions: ItemActions?, eventRepository: EventRepository): Event? {
             return eventRepository.getEvent(itemActions?.id ?: "")
         }
 
@@ -90,6 +90,6 @@ class EventTransform() {
             eventRepository: EventRepository
         ): Event? {
             return eventRepository.getEvent(itemContacts?.id ?: "")
-        }
+        }*/
     }
 }

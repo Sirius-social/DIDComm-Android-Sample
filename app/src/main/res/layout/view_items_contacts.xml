@@ -90,7 +90,7 @@
                                 android:textSize="12sp"
                                 android:gravity="center"
                                 android:layout_marginLeft="4dp"
-                                android:text="@{DateUtils.getStringFromDateBase(model.date)}"
+                                android:text=""
                                 android:textColor="@color/blue"/>
 
                         </LinearLayout>

@@ -7,6 +7,7 @@ import com.sirius.travelpass.base.ui.BaseViewModel
 import com.sirius.travelpass.transform.EventTransform
 import com.sirius.travelpass.models.ui.ItemActions
 import com.sirius.travelpass.repository.EventRepository
+import com.sirius.travelpass.repository.MessageRepository
 import com.sirius.travelpass.repository.UserRepository
 
 import javax.inject.Inject
@@ -16,7 +17,8 @@ import javax.inject.Inject
 open class ProfileViewModel @Inject constructor(
     val userRepository: UserRepository,
     resourcesProvider: ResourcesProvider,
-    val eventRepository: EventRepository
+    val eventRepository: EventRepository,
+    val messageRepository: MessageRepository
 ) : BaseViewModel(resourcesProvider) {
 
 
@@ -24,7 +26,7 @@ open class ProfileViewModel @Inject constructor(
     val emptyVisibilityLiveData = MutableLiveData<Int>()
     val actionsListVisibilityLiveData = MutableLiveData<Int>()
     val adapterListLiveData : MutableLiveData<List<ItemActions>> = MutableLiveData(listOf())
-    val eventLiveData = eventRepository.eventStoreLiveData
+    val eventLiveData = messageRepository.eventStoreLiveData
 
 
 
@@ -46,10 +48,10 @@ open class ProfileViewModel @Inject constructor(
 
 
     private fun createList() : List<ItemActions>{
-        val   list = eventRepository.loadAllUnacceptedEventActions().map {
+      /*  val   list = eventRepository.loadAllUnacceptedEventActions().map {
              EventTransform.eventToItemActions(it)
-        }
-        return list
+        }*/
+        return listOf()
 
     }
 

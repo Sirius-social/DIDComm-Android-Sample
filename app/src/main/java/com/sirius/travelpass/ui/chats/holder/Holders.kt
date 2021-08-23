@@ -2,6 +2,9 @@ package com.sirius.travelpass.ui.chats.holder
 
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import com.sirius.travelpass.R
+import com.sirius.travelpass.base.App
 import com.sirius.travelpass.databinding.*
 import com.sirius.travelpass.ui.chats.QuestionAnswerAdapter
 import com.sirius.travelpass.ui.chats.message.BaseItemMessage
@@ -9,6 +12,7 @@ import com.sirius.travelpass.ui.chats.message.OfferItemMessage
 import com.sirius.travelpass.ui.chats.message.ProverItemMessage
 import com.sirius.travelpass.ui.chats.message.QuestionItemMessage
 import com.sirius.travelpass.ui.credentials.CredentialsDetailAdapter
+import com.sirius.travelpass.utils.DateUtils
 
 class TextMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
     var binding: ItemMessageTextBinding? =
@@ -37,14 +41,39 @@ class OfferMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
         binding?.yesBtn?.setOnClickListener {
             item.accept()
         }
+
+        binding?.detailsBtn?.setOnClickListener {
+            if( item.detailsVisibilityLiveData.value == View.GONE){
+                item.detailsVisibilityLiveData.postValue(View.VISIBLE)
+                item.notifyItem()
+            }else{
+                item.detailsVisibilityLiveData.postValue(View.GONE)
+                item.notifyItem()
+            }
+        }
+
+        if(item.isLoading){
+            binding?.progressBar?.visibility = View.VISIBLE
+            binding?.buttonsLayout?.visibility =  View.GONE
+        }else{
+            binding?.progressBar?.visibility = View.GONE
+            binding?.buttonsLayout?.visibility =  View.VISIBLE
+        }
+        binding?.statusDate?.text =  DateUtils.getStringFromDate(item.date, DateUtils.PATTERN_ddMMMyyyyBase, false)
     }
 }
 
 class OfferAcceptedMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
-    // var binding: ItemMessageTextBinding? = DataBindingUtil.bind<ItemMessageTextBinding>(itemView)
+     var binding: ItemMessageOfferAcceptedBinding? = DataBindingUtil.bind<ItemMessageOfferAcceptedBinding>(itemView)
     override fun bind(item: BaseItemMessage) {
-        //      binding?.item = item
-
+        if(item.isError){
+            binding?.cardView?.setCardBackgroundColor(App.getContext().getColor(R.color.red))
+            binding?.text?.text = App.getContext().resources.getString(R.string.message_credentials_declined)
+        }else{
+            binding?.cardView?.setCardBackgroundColor(App.getContext().getColor(R.color.blue))
+            binding?.text?.text = App.getContext().resources.getString(R.string.message_offer_successfully)
+        }
+        binding?.dateText?.text = DateUtils.getStringFromDate(item.date, DateUtils.PATTERN_DATETIME_DOT, false)
     }
 }
 
@@ -66,14 +95,39 @@ class ProverMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
         binding?.yesBtn?.setOnClickListener {
             prover.accept()
         }
+
+        binding?.detailsBtn?.setOnClickListener {
+            if( item.detailsVisibilityLiveData.value == View.GONE){
+                item.detailsVisibilityLiveData.postValue(View.VISIBLE)
+                item.notifyItem()
+            }else{
+                item.detailsVisibilityLiveData.postValue(View.GONE)
+                item.notifyItem()
+            }
+        }
+        if(item.isLoading){
+            binding?.progressBar?.visibility = View.VISIBLE
+            binding?.buttonsLayout?.visibility =  View.GONE
+        }else{
+            binding?.progressBar?.visibility = View.GONE
+            binding?.buttonsLayout?.visibility =  View.VISIBLE
+        }
+        binding?.statusDate?.text =  DateUtils.getStringFromDate(item.date, DateUtils.PATTERN_ddMMMyyyyBase, false)
     }
 }
 
 class ProverAcceptedMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
-    // var binding: ItemMessageTextBinding? = DataBindingUtil.bind<ItemMessageTextBinding>(itemView)
+     var binding: ItemMessageProverAcceptedBinding? = DataBindingUtil.bind<ItemMessageProverAcceptedBinding>(itemView)
     override fun bind(item: BaseItemMessage) {
-        //      binding?.item = item
+        if(item.isError){
+            binding?.cardView?.setCardBackgroundColor(App.getContext().getColor(R.color.red))
+            binding?.text?.text = App.getContext().resources.getString(R.string.message_credentials_request_declined)
+        }else{
+            binding?.cardView?.setCardBackgroundColor(App.getContext().getColor(R.color.blue))
+            binding?.text?.text = App.getContext().resources.getString(R.string.message_credentials_request_succes)
+        }
 
+        binding?.dateText?.text = DateUtils.getStringFromDate(item.date, DateUtils.PATTERN_DATETIME_DOT, false)
     }
 }
 
@@ -91,21 +145,29 @@ class ConnectMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
         binding?.yesBtn?.setOnClickListener {
             item.accept()
         }
-        //    binding?.model = item
+        if(item.isLoading){
+            binding?.progressBar?.visibility = View.VISIBLE
+            binding?.buttonsLayout?.visibility =  View.GONE
+        }else{
+            binding?.progressBar?.visibility = View.GONE
+            binding?.buttonsLayout?.visibility =  View.VISIBLE
+        }
     }
 }
 
 class ConnectedMessageViewHolder(itemView: View) : MessageViewHolder(itemView) {
-    // var binding: ItemMessageConnectAcceptedBinding? = DataBindingUtil.bind<ItemMessageConnectAcceptedBinding>(itemView)
+     var binding: ItemMessageConnectAcceptedBinding? = DataBindingUtil.bind<ItemMessageConnectAcceptedBinding>(itemView)
     override fun bind(item: BaseItemMessage) {
-        /*  binding?.cancelBtn?.setOnClickListener {
-              item.cancel()
-          }
+        if(item.isError){
+            binding?.cardView?.setCardBackgroundColor(App.getContext().getColor(R.color.red))
+            binding?.text?.text = App.getContext().resources.getString(R.string.message_connected_error)
+           // item.errorString
+        }else{
+            binding?.cardView?.setCardBackgroundColor(App.getContext().getColor(R.color.blue))
+            binding?.text?.text = App.getContext().resources.getString(R.string.message_connected_successfully)
 
-          binding?.yesBtn?.setOnClickListener {
-              item.accept()
-          }*/
-        //    binding?.model = item
+        }
+        binding?.dateText?.text = DateUtils.getStringFromDate(item.date, DateUtils.PATTERN_DATETIME_DOT, false)
     }
 }
 

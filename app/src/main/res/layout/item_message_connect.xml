@@ -29,10 +29,18 @@
                     style="@style/Regular19"
                     android:text="@string/action_item_connect"/>
 
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/progressBar"/>
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:id="@+id/buttonsLayout"
                     android:orientation="horizontal">
 
 

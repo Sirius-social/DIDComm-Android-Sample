@@ -1,8 +1,10 @@
 package com.sirius.travelpass.ui.credentials
 
+import android.view.View
 import androidx.lifecycle.Observer
 import com.sirius.travelpass.R
 import com.sirius.travelpass.base.App
+import com.sirius.travelpass.base.AppPref
 import com.sirius.travelpass.base.ui.BaseFragment
 
 import com.sirius.travelpass.databinding.FragmentCredentialsBinding
@@ -17,6 +19,12 @@ class CredentialsFragment : BaseFragment<FragmentCredentialsBinding, Credentials
     override fun setupViews() {
         super.setupViews()
         dataBinding.credentialsRecyclerView.adapter = adapter
+        if(AppPref.getInstance().isShowFaceCredential()){
+            dataBinding.faceCredentialLayout.visibility = View.GONE
+        }else{
+            dataBinding.faceCredentialLayout.visibility = View.VISIBLE
+        }
+
     }
 
     override fun getLayoutRes(): Int {

@@ -20,7 +20,9 @@ class CredentialsDetailAdapter :
         var binding: ViewItemsCredentialsDetailBinding? = DataBindingUtil.bind<ViewItemsCredentialsDetailBinding>(itemView)
         fun bind(item: ItemCredentialsDetails) {
             binding?.item = item
-
+            if(item.value.isNullOrEmpty()){
+                binding?.textDivider?.visibility = View.GONE
+            }
         }
     }
 

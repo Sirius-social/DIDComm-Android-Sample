@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import androidx.lifecycle.Observer
 import com.sirius.travelpass.R
 import com.sirius.travelpass.base.App
+import com.sirius.travelpass.base.AppPref
 import com.sirius.travelpass.base.ui.BaseFragment
 
 import com.sirius.travelpass.databinding.FragmentAuthSecondBinding
@@ -40,6 +41,7 @@ class CredentialFaceFragment : BaseFragment<FragmentCredentialFaceBinding, Crede
         })
         model.goToNextInfoScreenLiveData.observe(this, Observer {
             if (it) {
+                AppPref.getInstance().setShowFaceCredential(false)
                 model.goToNextInfoScreenLiveData.value = false
                 fragmentManager?.beginTransaction()?.remove(this)?.commit()
             }

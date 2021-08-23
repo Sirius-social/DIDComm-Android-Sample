@@ -3,10 +3,12 @@ package com.sirius.travelpass.ui.chats.message
 import com.sirius.travelpass.R
 import com.sirius.sdk.agent.aries_rfc.feature_0095_basic_message.Message
 import com.sirius.sdk.agent.listener.Event
+import com.sirius.travelpass.repository.models.LocalMessage
 
-class TextItemMessage(event: Event?) : BaseItemMessage(event) {
+class TextItemMessage: BaseItemMessage {
 
-
+    constructor(event: Event?) : super(event)
+    constructor(localMessage: LocalMessage?) : super(localMessage)
 
     override fun getType(): MessageType {
         return MessageType.Text

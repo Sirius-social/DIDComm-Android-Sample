@@ -1,6 +1,7 @@
 package com.sirius.travelpass.base.dagger;
 
 import android.app.Application
+import com.sirius.travelpass.repository.MessageRepository
 import com.sirius.travelpass.ui.activities.auth.AuthActivity
 import com.sirius.travelpass.ui.activities.loader.LoaderActivity
 import com.sirius.travelpass.ui.activities.main.MainActivity
@@ -45,7 +46,7 @@ interface AppComponent {
     }
 
 
-
+    fun provideMessageRepository(): MessageRepository?
     /**
      * Add all fragment with ViewModel Here
      */
