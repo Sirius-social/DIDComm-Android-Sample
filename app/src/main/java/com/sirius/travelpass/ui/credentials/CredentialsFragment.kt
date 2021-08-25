@@ -9,6 +9,7 @@ import com.sirius.travelpass.base.ui.BaseFragment
 
 import com.sirius.travelpass.databinding.FragmentCredentialsBinding
 import com.sirius.travelpass.models.ui.ItemCredentials
+import com.sirius.travelpass.ui.auth.auth_third_identity.AuthThirdIdentityFragment
 
 
 class CredentialsFragment : BaseFragment<FragmentCredentialsBinding, CredentialsViewModel>() {
@@ -38,6 +39,12 @@ class CredentialsFragment : BaseFragment<FragmentCredentialsBinding, Credentials
     override fun subscribe() {
         model.adapterListLiveData.observe(this, Observer {
             updateAdapter(it)
+        })
+        model.goToTypeInfoScreenLiveData.observe(this, Observer {
+            if (it) {
+                model.goToTypeInfoScreenLiveData.value = false
+                baseActivity.pushPage(AuthThirdIdentityFragment())
+            }
         })
     }
 

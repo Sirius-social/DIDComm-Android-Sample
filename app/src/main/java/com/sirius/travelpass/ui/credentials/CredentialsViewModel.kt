@@ -21,7 +21,7 @@ open class CredentialsViewModel @Inject constructor(
 
     val adapterListLiveData : MutableLiveData<List<ItemCredentials>> = MutableLiveData(listOf())
     val userLabelLiveData : MutableLiveData<String> = MutableLiveData(userRepository.myUser?.name)
-
+    val goToTypeInfoScreenLiveData = MutableLiveData<Boolean>()
 
 
     private fun createList() : List<ItemCredentials>{
@@ -39,7 +39,7 @@ open class CredentialsViewModel @Inject constructor(
     }
 
     fun onFilterClick(v: View){
-
+        goToTypeInfoScreenLiveData.postValue(true)
     }
 
 

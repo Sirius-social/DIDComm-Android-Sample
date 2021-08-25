@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Repository/TravelPass/app/src/main/res/layout/activity_tutorial.xml" value="0.16757246376811594" />
+        <entry key="..\:/Repository/TravelPass/app/src/main/res/layout/fragment_auth_third.xml" value="0.25" />
+        <entry key="..\:/Repository/TravelPass/app/src/main/res/layout/fragment_auth_third_choose.xml" value="0.2667572463768116" />
+        <entry key="..\:/Repository/TravelPass/app/src/main/res/layout/fragment_auth_third_identity.xml" value="0.1490036231884058" />
         <entry key="..\:/Repository/TravelPass/app/src/main/res/layout/fragment_chats.xml" value="0.33" />
         <entry key="..\:/Repository/TravelPass/app/src/main/res/layout/fragment_credentials.xml" value="0.33" />
         <entry key="..\:/Repository/TravelPass/app/src/main/res/layout/fragment_menu.xml" value="0.25" />
