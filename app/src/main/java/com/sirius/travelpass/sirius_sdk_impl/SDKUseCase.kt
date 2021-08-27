@@ -86,12 +86,6 @@ class SDKUseCase @Inject constructor(
         }
         val walletId = alias.substring(IntRange(0, 8))
 
-        val poolDirPath = mainDirPath + File.separator + "pool"
-        val poolDirPath2 = mainDirPath + File.separator + "poolDir"+ File.separator + "pool3.txn"
-      //  Utils.copyRawFile(context, R.raw.pool_transactions_genesis, poolDirPath)
-        //     val path = "android.resource://" + getPackageName().toString() + "/" + R.raw.pool_transactions_genesis
-
-
         val sender = object : BaseSender() {
             override fun sendTo(endpoint: String, data: ByteArray): Boolean {
                 if (endpoint.startsWith("http")) {
@@ -129,15 +123,11 @@ class SDKUseCase @Inject constructor(
         }
         val mediatorAddress = "wss://mediator.socialsirius.com/ws"
         val recipientKeys = "DjgWN49cXQ6M6JayBkRCwFsywNhomn8gdAXHJ4bb98im"
-        /* SiriusSDK.getInstance().initialize(
-             this, "https://socialsirius.com/endpoint/48fa9281-d6b1-4b17-901d-7db9e64b70b1/",
-             "https://socialsirius.com", walletId, passForWallet, mainDirPath, "Sirius Sample SDK"
-         )*/
+  
         Thread(Runnable {
             SiriusSDK.getInstance().initialize(
                 mycontext = context, alias = walletId, pass = passForWallet,
                 mainDirPath = mainDirPath,
-                genesisPath = poolDirPath2, networkName = "default",
                 mediatorAddress = mediatorAddress,recipientKeys = listOf(recipientKeys),
                 label = label, baseSender = sender
             )
