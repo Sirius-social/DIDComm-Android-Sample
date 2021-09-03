@@ -51,7 +51,7 @@
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/logo">
 
-            <vcm.github.webkit.proview.ProWebView
+<!--            <vcm.github.webkit.proview.ProWebView
                 android:id="@+id/webview"
                 app:cacheMode="cacheElseNetwork"
                 app:javascriptEnabled="true"
@@ -59,12 +59,12 @@
                 app:thirdPartyCookiesEnabled="true"
                 app:nestedScrollingEnabled="true"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"/>-->
 
-            <!--<WebView
+            <WebView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/webview" />-->
+                android:id="@+id/webview" />
         </LinearLayout>
     </RelativeLayout>
 </layout>

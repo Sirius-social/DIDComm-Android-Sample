@@ -3,6 +3,8 @@ package com.sirius.travelpass.sirius_sdk_impl
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.sirius.travelpass.service.WebSocketService
 import com.sirius.travelpass.utils.DateUtils.PATTERN_ROSTER_STATUS_RESPONSE2
 import com.sirius.sdk.agent.BaseSender
@@ -123,19 +125,27 @@ class SDKUseCase @Inject constructor(
         }
         val mediatorAddress = "wss://mediator.socialsirius.com/ws"
         val recipientKeys = "DjgWN49cXQ6M6JayBkRCwFsywNhomn8gdAXHJ4bb98im"
-  
-        Thread(Runnable {
-            SiriusSDK.getInstance().initialize(
-                mycontext = context, alias = walletId, pass = passForWallet,
-                mainDirPath = mainDirPath,
-                mediatorAddress = mediatorAddress,recipientKeys = listOf(recipientKeys),
-                label = label, baseSender = sender
-            )
-            ChanelHelper.getInstance().initListener()
-            SiriusSDK.getInstance().connectToMediator()
-            initScenario()
-            onInitListener?.initEnd()
-        }).start()
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                //  Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            val token = task.result
+            Thread(Runnable {
+                SiriusSDK.getInstance().initialize(
+                    mycontext = context, alias = walletId, pass = passForWallet,
+                    mainDirPath = mainDirPath,
+                    mediatorAddress = mediatorAddress,recipientKeys = listOf(recipientKeys),
+                    label = label, baseSender = sender
+                )
+                ChanelHelper.getInstance().initListener()
+                SiriusSDK.getInstance().connectToMediator(token)
+                initScenario()
+                onInitListener?.initEnd()
+            }).start()
+        })
+
+
     }
 
 

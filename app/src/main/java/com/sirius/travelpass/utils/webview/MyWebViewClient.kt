@@ -11,6 +11,7 @@ class MyWebViewClient : WebViewClient() {
         return super.shouldOverrideUrlLoading(view, request)
     }
 
+
     override fun shouldInterceptRequest(
         view: WebView?,
         request: WebResourceRequest?
