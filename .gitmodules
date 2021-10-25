@@ -1,3 +1,7 @@
 [submodule "sirius-sdk-android"]
 	path = sirius-sdk-android
 	url = git@github.com:Sirius-social/sirius-sdk-android.git
+[submodule "sirius-sdk-kotlin"]
+	path = sirius-sdk-kotlin
+	url = git@github.com:Sirius-social/sirius-sdk-kotlin.git
+	branch = temp_worker
