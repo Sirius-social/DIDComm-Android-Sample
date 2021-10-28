@@ -2,11 +2,12 @@ package com.sirius.travelpass.ui.chats.message
 
 import com.sirius.travelpass.models.ui.ItemCredentialsDetails
 import com.sirius.travelpass.utils.DateUtils
-import com.sirius.sdk.agent.aries_rfc.feature_0036_issue_credential.messages.OfferCredentialMessage
-import com.sirius.sdk.agent.listener.Event
-import com.sirius.sdk_android.helpers.ScenarioHelper
-import com.sirius.sdk_android.scenario.EventAction
-import com.sirius.sdk_android.scenario.EventActionListener
+import com.sirius.library.agent.aries_rfc.feature_0036_issue_credential.messages.OfferCredentialMessage
+import com.sirius.library.agent.listener.Event
+import com.sirius.library.mobile.helpers.ScenarioHelper
+import com.sirius.library.mobile.scenario.EventAction
+import com.sirius.library.mobile.scenario.EventActionListener
+
 import com.sirius.travelpass.repository.models.LocalMessage
 
 
@@ -49,7 +50,7 @@ class OfferItemMessage : BaseItemMessage {
         val preview = offerMessage?.credentialPreview
 
         detailList = preview?.map {
-            ItemCredentialsDetails(it.name, it.value)
+            ItemCredentialsDetails(it.name?:"", it.value?:"")
         }
         hint = offerMessage?.comment
 
@@ -57,7 +58,7 @@ class OfferItemMessage : BaseItemMessage {
         val timeString = timeObj?.getString("~timing")
         expiresTime = DateUtils.getDateFromString(timeString, "yyyy-MM-dd'T'HH:mm:ss.SSSZ", false)
 
-        var offerAttaches = offerMessage?.getMessageObj()?.getJSONArray("~attach")
+        var offerAttaches = offerMessage?.messageObj?.getJSONArray("~attach")
         if (offerAttaches != null) {
             val att = offerAttaches.optJSONObject(0)
             if (att != null) {
@@ -73,7 +74,7 @@ class OfferItemMessage : BaseItemMessage {
 
 
     override fun accept(comment : String?) {
-        ScenarioHelper.getInstance().acceptScenario("Holder", message?.id ?: "", comment, object :
+        ScenarioHelper.getInstance().acceptScenario("Holder", message?.getId() ?: "", comment, object :
             EventActionListener {
             override fun onActionStart(action: EventAction, id: String, comment: String?) {
                 startLoading(id)
@@ -97,7 +98,7 @@ class OfferItemMessage : BaseItemMessage {
     }
 
     override fun cancel() {
-        ScenarioHelper.getInstance().stopScenario("Holder", message?.id ?: "", "Canceled By Me", object :
+        ScenarioHelper.getInstance().stopScenario("Holder", message?.getId() ?: "", "Canceled By Me", object :
             EventActionListener {
             override fun onActionStart(action: EventAction, id: String, comment: String?) {
                 startLoading(id)

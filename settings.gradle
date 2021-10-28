@@ -1,4 +1,4 @@
 rootProject.name = "TravelPass"
 include ':app'
-include ':sirius-sdk-android:sdk_android'
-include ':sirius-sdk-android:sdk_android:java_sdk'
+include ':sirius-sdk-kotlin'
+include ':sirius-sdk-kotlin:multiplatform-crypto-libsodium-bindings'

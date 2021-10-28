@@ -1,0 +1,263 @@
+{
+  "project_info": {
+    "project_number": "369794134513",
+    "firebase_url": "https://habarshi-acc21.firebaseio.com",
+    "project_id": "habarshi-acc21",
+    "storage_bucket": "habarshi-acc21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369794134513:android:e8f3bb99be811cd5",
+        "android_client_info": {
+          "package_name": "com.habarshi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-hb46eNS-pd9CAuVLKFxG9B2UZ1uS44A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "369794134513-psbkab48orofh9756dbu2pk12lbosneh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sirius.Sirius"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369794134513:android:2c5ef0d1d84bffa36c5450",
+        "android_client_info": {
+          "package_name": "com.habarshi.old"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-hb46eNS-pd9CAuVLKFxG9B2UZ1uS44A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "369794134513-psbkab48orofh9756dbu2pk12lbosneh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sirius.Sirius"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369794134513:android:6ce5dea5b187a0b1",
+        "android_client_info": {
+          "package_name": "com.market.pro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-hb46eNS-pd9CAuVLKFxG9B2UZ1uS44A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "369794134513-psbkab48orofh9756dbu2pk12lbosneh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sirius.Sirius"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369794134513:android:6a818fda706aec17",
+        "android_client_info": {
+          "package_name": "com.market.standart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-hb46eNS-pd9CAuVLKFxG9B2UZ1uS44A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "369794134513-psbkab48orofh9756dbu2pk12lbosneh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sirius.Sirius"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369794134513:android:7800eee3d5e7b7a6",
+        "android_client_info": {
+          "package_name": "com.sirius"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-hb46eNS-pd9CAuVLKFxG9B2UZ1uS44A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "369794134513-psbkab48orofh9756dbu2pk12lbosneh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sirius.Sirius"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369794134513:android:f11e1318378dfc676c5450",
+        "android_client_info": {
+          "package_name": "com.sirius.travelpass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-hb46eNS-pd9CAuVLKFxG9B2UZ1uS44A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "369794134513-psbkab48orofh9756dbu2pk12lbosneh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sirius.Sirius"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:369794134513:android:b42db5fcdd3505116c5450",
+        "android_client_info": {
+          "package_name": "uni.reliyant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-hb46eNS-pd9CAuVLKFxG9B2UZ1uS44A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "369794134513-mu6fjj3h3qk170gn40r5fvserevrpb83.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "369794134513-psbkab48orofh9756dbu2pk12lbosneh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sirius.Sirius"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

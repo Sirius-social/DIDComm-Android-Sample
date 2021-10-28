@@ -1,13 +1,13 @@
 package com.sirius.travelpass.transform
 
 import androidx.lifecycle.LiveData
-import com.sirius.sdk.agent.aries_rfc.feature_0036_issue_credential.messages.OfferCredentialMessage
-import com.sirius.sdk.agent.aries_rfc.feature_0037_present_proof.messages.RequestPresentationMessage
-import com.sirius.sdk.agent.aries_rfc.feature_0095_basic_message.Message
-import com.sirius.sdk.agent.aries_rfc.feature_0113_question_answer.mesages.QuestionMessage
-import com.sirius.sdk.agent.aries_rfc.feature_0160_connection_protocol.messages.ConnRequest
-import com.sirius.sdk.agent.aries_rfc.feature_0160_connection_protocol.messages.Invitation
-import com.sirius.sdk.agent.listener.Event
+import com.sirius.library.agent.aries_rfc.feature_0036_issue_credential.messages.OfferCredentialMessage
+import com.sirius.library.agent.aries_rfc.feature_0037_present_proof.messages.RequestPresentationMessage
+import com.sirius.library.agent.aries_rfc.feature_0095_basic_message.Message
+import com.sirius.library.agent.aries_rfc.feature_0113_question_answer.messages.QuestionMessage
+import com.sirius.library.agent.aries_rfc.feature_0160_connection_protocol.messages.ConnRequest
+import com.sirius.library.agent.aries_rfc.feature_0160_connection_protocol.messages.Invitation
+import com.sirius.library.agent.listener.Event
 import com.sirius.travelpass.models.ui.ItemActions
 import com.sirius.travelpass.models.ui.ItemContacts
 import com.sirius.travelpass.repository.EventRepository
@@ -27,13 +27,13 @@ class LocalMessageTransform {
             val message = localMessage.message()
             var title = ""
             if (message is Invitation) {
-                title = message.label()
+                title = message.label() ?:""
             }
             var id = localMessage.id
             val pairwise = localMessage.restorePairwise()
             pairwise?.let {
                 id = localMessage.pairwiseDid
-                title = pairwise.their.label
+                title = pairwise.their.label ?:""
             }
             val contact = ItemContacts(id ?: "", title, Date())
             return contact
@@ -99,7 +99,7 @@ class LocalMessageTransform {
             val pairwise = localMessage.restorePairwise()
             pairwise?.let {
               //  id = localMessage.pairwiseDid
-                hint = pairwise.their.label
+                hint = pairwise.their.label ?:""
             }
             return ItemActions(id ?: "", type, hint)
         }

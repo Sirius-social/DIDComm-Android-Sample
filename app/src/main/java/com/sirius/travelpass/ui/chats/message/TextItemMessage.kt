@@ -1,8 +1,8 @@
 package com.sirius.travelpass.ui.chats.message
 
 import com.sirius.travelpass.R
-import com.sirius.sdk.agent.aries_rfc.feature_0095_basic_message.Message
-import com.sirius.sdk.agent.listener.Event
+import com.sirius.library.agent.aries_rfc.feature_0095_basic_message.Message
+import com.sirius.library.agent.listener.Event
 import com.sirius.travelpass.repository.models.LocalMessage
 
 class TextItemMessage: BaseItemMessage {

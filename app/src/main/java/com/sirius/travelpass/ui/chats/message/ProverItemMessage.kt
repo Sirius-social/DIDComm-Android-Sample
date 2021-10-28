@@ -2,12 +2,13 @@ package com.sirius.travelpass.ui.chats.message
 
 
 import com.sirius.travelpass.models.ui.ItemCredentialsDetails
-import com.sirius.sdk.agent.aries_rfc.feature_0036_issue_credential.messages.ProposedAttrib
-import com.sirius.sdk.agent.aries_rfc.feature_0037_present_proof.messages.RequestPresentationMessage
-import com.sirius.sdk.agent.listener.Event
-import com.sirius.sdk_android.helpers.ScenarioHelper
-import com.sirius.sdk_android.scenario.EventAction
-import com.sirius.sdk_android.scenario.EventActionListener
+import com.sirius.library.agent.aries_rfc.feature_0036_issue_credential.messages.ProposedAttrib
+import com.sirius.library.agent.aries_rfc.feature_0037_present_proof.messages.RequestPresentationMessage
+import com.sirius.library.agent.listener.Event
+import com.sirius.library.mobile.helpers.ScenarioHelper
+import com.sirius.library.mobile.scenario.EventAction
+import com.sirius.library.mobile.scenario.EventActionListener
+
 import com.sirius.travelpass.repository.models.LocalMessage
 import org.json.JSONObject
 import java.util.*
@@ -36,7 +37,10 @@ class ProverItemMessage : BaseItemMessage {
 
     fun setupMessage(requestPresentationMessage: RequestPresentationMessage?) {
 
-        expiresTime = requestPresentationMessage?.expiresTime()
+        requestPresentationMessage?.expiresTime()?.let {
+            expiresTime = Date(requestPresentationMessage.expiresTime()!!.time)
+        }
+
         val proofRequest = requestPresentationMessage?.proofRequest().toString()
         val message = JSONObject(requestPresentationMessage?.serialize())
         val attches = message.optJSONArray("~attach")
@@ -73,8 +77,8 @@ class ProverItemMessage : BaseItemMessage {
                 var existTranslation = false
                 list.forEach {
                     if (it.name == name) {
-                        if (it.value.isNotEmpty()) {
-                            names.add(it.value)
+                        if (it.value?.isNotEmpty()==true) {
+                            names.add(it.value?:"")
                             existTranslation = true
                         }
                     }
@@ -104,7 +108,7 @@ class ProverItemMessage : BaseItemMessage {
 
 
     override fun accept(comment: String?) {
-        ScenarioHelper.getInstance().acceptScenario("Prover", message?.id ?: "", comment, object :
+        ScenarioHelper.getInstance().acceptScenario("Prover", message?.getId() ?: "", comment, object :
             EventActionListener {
             override fun onActionStart(action: EventAction, id: String, comment: String?) {
                 startLoading(id)
@@ -128,7 +132,7 @@ class ProverItemMessage : BaseItemMessage {
     }
 
     override fun cancel() {
-        ScenarioHelper.getInstance().stopScenario("Prover", message?.id ?: "", "Canceled By Me",
+        ScenarioHelper.getInstance().stopScenario("Prover", message?.getId() ?: "", "Canceled By Me",
             object : EventActionListener {
                 override fun onActionStart(action: EventAction, id: String, comment: String?) {
                     startLoading(id)

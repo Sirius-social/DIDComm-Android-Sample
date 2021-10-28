@@ -1,21 +1,18 @@
 package com.sirius.travelpass.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.sirius.sdk.agent.aries_rfc.feature_0036_issue_credential.messages.OfferCredentialMessage
-import com.sirius.sdk.agent.aries_rfc.feature_0036_issue_credential.state_machines.Holder
-import com.sirius.sdk.agent.aries_rfc.feature_0037_present_proof.messages.RequestPresentationMessage
-import com.sirius.sdk.agent.aries_rfc.feature_0113_question_answer.mesages.QuestionMessage
-import com.sirius.sdk.agent.aries_rfc.feature_0160_connection_protocol.messages.ConnRequest
-import com.sirius.sdk.agent.aries_rfc.feature_0160_connection_protocol.messages.Invitation
-import com.sirius.sdk.agent.listener.Event
-import com.sirius.sdk.agent.pairwise.Pairwise
-import com.sirius.sdk.agent.storages.InWalletImmutableCollection
-import com.sirius.sdk.messaging.Message
-import com.sirius.sdk.storage.abstract_storage.AbstractImmutableCollection
-import com.sirius.sdk_android.EventWalletStorage
-import com.sirius.sdk_android.SiriusSDK
-import com.sirius.sdk_android.helpers.PairwiseHelper
-import com.sirius.sdk_android.scenario.EventStorageAbstract
+import com.sirius.library.agent.aries_rfc.feature_0036_issue_credential.messages.OfferCredentialMessage
+import com.sirius.library.agent.aries_rfc.feature_0036_issue_credential.state_machines.Holder
+import com.sirius.library.agent.aries_rfc.feature_0037_present_proof.messages.RequestPresentationMessage
+import com.sirius.library.agent.aries_rfc.feature_0113_question_answer.messages.QuestionMessage
+import com.sirius.library.agent.aries_rfc.feature_0160_connection_protocol.messages.ConnRequest
+import com.sirius.library.agent.aries_rfc.feature_0160_connection_protocol.messages.Invitation
+import com.sirius.library.agent.listener.Event
+import com.sirius.library.agent.pairwise.Pairwise
+import com.sirius.library.agent.storages.InWalletImmutableCollection
+import com.sirius.library.messaging.Message
+import com.sirius.library.mobile.scenario.EventStorageAbstract
+
 import com.sirius.travelpass.repository.models.LocalMessage
 import com.sirius.travelpass.utils.DateUtils
 import com.sirius.travelpass.utils.extensions.observeOnceUnsafe
@@ -30,11 +27,11 @@ class EventRepository @Inject constructor(val messageRepository: MessageReposito
     EventStorageAbstract {
 
 
-    override fun eventStore(id: String, event: Pair<String?, Message>?, accepted: Boolean) {
+    override fun eventStore(id: String, event: Pair<String?, Message?>?, accepted: Boolean) {
         val localMessage = LocalMessage(id, event?.first)
         localMessage.message = event?.second?.serialize()
         localMessage.isAccepted = accepted
-        if(event?.second is com.sirius.sdk.agent.aries_rfc.feature_0095_basic_message.Message){
+        if(event?.second is com.sirius.library.agent.aries_rfc.feature_0095_basic_message.Message){
             localMessage.type = "text"
         }else if(event?.second is Invitation || event?.second is ConnRequest){
             localMessage.type = "invitation"
@@ -46,7 +43,7 @@ class EventRepository @Inject constructor(val messageRepository: MessageReposito
             localMessage.type = "question"
         }
         if (event?.second?.messageObjectHasKey("sent_time") == true) {
-            val sentTime = event.second.getStringFromJSON("sent_time")
+            val sentTime = event?.second?.getStringFromJSON("sent_time")
             localMessage.sentTime = DateUtils.getDateFromString(
                 sentTime,
                 DateUtils.PATTERN_ROSTER_STATUS_RESPONSE2, true
@@ -58,6 +55,8 @@ class EventRepository @Inject constructor(val messageRepository: MessageReposito
 
         messageRepository.createOrUpdateItem(localMessage)
     }
+
+
 
     override fun eventRemove(id: String) {
         //   messageRepository.r

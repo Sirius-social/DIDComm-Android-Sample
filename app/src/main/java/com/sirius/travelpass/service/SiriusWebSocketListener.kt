@@ -5,8 +5,9 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.neovisionaries.ws.client.*
+import com.sirius.library.mobile.helpers.ChanelHelper
 import com.sirius.travelpass.service.ChannelMessageWrapper.WIRED_CONTENT_TYPE
-import com.sirius.sdk_android.helpers.ChanelHelper
+
 
 
 class SiriusWebSocketListener() : WebSocketListener {

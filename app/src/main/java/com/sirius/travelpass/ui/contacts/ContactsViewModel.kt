@@ -2,14 +2,14 @@ package com.sirius.travelpass.ui.contacts
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import com.sirius.library.mobile.helpers.PairwiseHelper
 import com.sirius.travelpass.base.providers.ResourcesProvider
 import com.sirius.travelpass.base.ui.BaseViewModel
 import com.sirius.travelpass.models.ui.ItemContacts
 import com.sirius.travelpass.models.ui.ItemTags
 import com.sirius.travelpass.repository.UserRepository
 import com.sirius.travelpass.transform.PairwiseTransform
-import com.sirius.sdk_android.SiriusSDK
-import com.sirius.sdk_android.helpers.PairwiseHelper
+
 import java.util.*
 
 import javax.inject.Inject

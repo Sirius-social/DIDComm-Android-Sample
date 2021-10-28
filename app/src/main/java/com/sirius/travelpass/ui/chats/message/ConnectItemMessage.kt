@@ -1,10 +1,11 @@
 package com.sirius.travelpass.ui.chats.message
 
 import com.sirius.travelpass.R
-import com.sirius.sdk.agent.listener.Event
-import com.sirius.sdk_android.helpers.ScenarioHelper
-import com.sirius.sdk_android.scenario.EventAction
-import com.sirius.sdk_android.scenario.EventActionListener
+import com.sirius.library.agent.listener.Event
+import com.sirius.library.mobile.helpers.ScenarioHelper
+import com.sirius.library.mobile.scenario.EventAction
+import com.sirius.library.mobile.scenario.EventActionListener
+
 import com.sirius.travelpass.base.App
 import com.sirius.travelpass.repository.MessageRepository
 import com.sirius.travelpass.repository.models.LocalMessage
@@ -27,7 +28,7 @@ class ConnectItemMessage : BaseItemMessage {
 
 
     override fun accept(comment: String?) {
-        ScenarioHelper.getInstance().acceptScenario("Invitee", message?.id ?: "", comment, object :
+        ScenarioHelper.getInstance().acceptScenario("Invitee", message?.getId() ?: "", comment, object :
             EventActionListener {
             override fun onActionStart(action: EventAction, id: String, comment: String?) {
                 startLoading(id)
@@ -56,7 +57,7 @@ class ConnectItemMessage : BaseItemMessage {
 
     override fun cancel() {
         ScenarioHelper.getInstance()
-            .stopScenario("Invitee", message?.id ?: "", "Canceled By Me", object :
+            .stopScenario("Invitee", message?.getId() ?: "", "Canceled By Me", object :
                 EventActionListener {
                 override fun onActionStart(action: EventAction, id: String, comment: String?) {
                     startLoading(id)

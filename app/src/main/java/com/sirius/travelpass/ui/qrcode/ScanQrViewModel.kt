@@ -3,9 +3,10 @@ package com.sirius.travelpass.ui.qrcode
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
+import com.sirius.library.mobile.helpers.ChanelHelper
+import com.sirius.library.mobile.helpers.InvitationHelper
 
-import com.sirius.sdk_android.helpers.ChanelHelper
-import com.sirius.sdk_android.helpers.InvitationHelper
+
 import com.sirius.travelpass.base.providers.ResourcesProvider
 import com.sirius.travelpass.base.ui.BaseViewModel
 import com.sirius.travelpass.repository.EventRepository

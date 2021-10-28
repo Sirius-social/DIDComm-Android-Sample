@@ -7,19 +7,20 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.sirius.travelpass.service.WebSocketService
 import com.sirius.travelpass.utils.DateUtils.PATTERN_ROSTER_STATUS_RESPONSE2
-import com.sirius.sdk.agent.BaseSender
-import com.sirius.sdk.agent.aries_rfc.feature_0095_basic_message.Message
-import com.sirius.sdk.agent.aries_rfc.feature_0113_question_answer.mesages.QuestionMessage
-import com.sirius.sdk.agent.aries_rfc.feature_0113_question_answer.mesages.Recipes
-import com.sirius.sdk.agent.listener.Event
-import com.sirius.sdk_android.SiriusSDK
-import com.sirius.sdk_android.helpers.ChanelHelper
-import com.sirius.sdk_android.helpers.PairwiseHelper
-import com.sirius.sdk_android.helpers.ScenarioHelper
-import com.sirius.sdk_android.scenario.impl.*
-import com.sirius.sdk_android.utils.DateUtils
-import com.sirius.sdk_android.utils.HashUtils
-import com.sirius.sdk_android.utils.JSONUtilsAndroid
+import com.sirius.library.agent.BaseSender
+import com.sirius.library.agent.aries_rfc.feature_0095_basic_message.Message
+
+import com.sirius.library.agent.aries_rfc.feature_0113_question_answer.messages.QuestionMessage
+import com.sirius.library.agent.aries_rfc.feature_0113_question_answer.messages.Recipes
+
+import com.sirius.library.mobile.SiriusSDK
+import com.sirius.library.mobile.helpers.ChanelHelper
+import com.sirius.library.mobile.helpers.PairwiseHelper
+import com.sirius.library.mobile.helpers.ScenarioHelper
+import com.sirius.library.mobile.scenario.impl.InviterScenario
+import com.sirius.library.mobile.utils.HashUtils
+
+
 import com.sirius.travelpass.repository.EventRepository
 import com.sirius.travelpass.repository.MessageRepository
 import com.sirius.travelpass.repository.models.LocalMessage
@@ -89,16 +90,16 @@ class SDKUseCase @Inject constructor(
         val walletId = alias.substring(IntRange(0, 8))
 
         val sender = object : BaseSender() {
-            override fun sendTo(endpoint: String, data: ByteArray): Boolean {
-                if (endpoint.startsWith("http")) {
+            override fun sendTo(endpoint: String?, data: ByteArray?): Boolean {
+                if (endpoint?.startsWith("http")==true) {
                     Thread(Runnable {
                         //content-type
                         val ssiAgentWire: MediaType = "application/ssi-agent-wire".toMediaType()
                         var client: OkHttpClient = OkHttpClient()
-                        Log.d("mylog200", "requset=" + String(data))
-                        val body: RequestBody = RequestBody.create(ssiAgentWire, data)
+                        Log.d("mylog200", "requset=" + String(data?: ByteArray(0)))
+                        val body: RequestBody = RequestBody.create(ssiAgentWire, data?: ByteArray(0))
                         val request: Request = Request.Builder()
-                            .url(endpoint)
+                            .url(endpoint?:"")
                             .post(body)
                             .build()
                         client.newCall(request).execute().use { response ->
@@ -106,16 +107,20 @@ class SDKUseCase @Inject constructor(
                             response.isSuccessful
                         }
                     }).start()
-                } else if (endpoint.startsWith("ws")) {
-                    sendMessToSocket(context, endpoint, data)
+                } else if (endpoint?.startsWith("ws")==true) {
+                    sendMessToSocket(context, endpoint, data?: ByteArray(0))
                 }
 
                 return false
             }
 
-            override fun open(endpoint: String) {
-                connectToSocket(context, endpoint)
+            override fun open(endpoint: String?) {
+                connectToSocket(context, endpoint?:"")
             }
+
+
+
+
 
             override fun close() {
                 closeSocket(context)
@@ -168,7 +173,9 @@ class SDKUseCase @Inject constructor(
         localMessage.type = "text"
         localMessage.message = message.serialize()
         localMessage.sentTime = Date()
-        SiriusSDK.getInstance().context.sendTo(message, pairwise)
+        pairwise?.let {
+            SiriusSDK.getInstance().context.sendTo(message, pairwise)
+        }
         return localMessage
     }
 
@@ -190,7 +197,9 @@ class SDKUseCase @Inject constructor(
         localMessage.type = "question"
         localMessage.message = message.serialize()
         Thread(Runnable {
-            Recipes.askAndWaitAnswer(SiriusSDK.getInstance().context,message,pairwise)
+            pairwise?.let {
+                Recipes.askAndWaitAnswer(SiriusSDK.getInstance().context,message,pairwise)
+            }
         }).start()
         return localMessage
     }

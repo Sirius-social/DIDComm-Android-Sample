@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.google.gson.Gson
-import com.sirius.sdk_android.helpers.ChanelHelper
+import com.sirius.library.mobile.helpers.ChanelHelper
 
 
 class FirebaseChannelWorker(appContext: Context, workerParams: WorkerParameters):

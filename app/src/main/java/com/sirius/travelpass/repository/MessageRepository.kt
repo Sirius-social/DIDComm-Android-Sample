@@ -2,8 +2,8 @@ package com.sirius.travelpass.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.goterl.lazycode.lazysodium.interfaces.Hash
-import com.sirius.sdk.agent.listener.Event
+
+import com.sirius.library.agent.listener.Event
 import com.sirius.travelpass.base.App
 import com.sirius.travelpass.repository.local.BaseDatabase
 import com.sirius.travelpass.repository.local.MessageDatabase

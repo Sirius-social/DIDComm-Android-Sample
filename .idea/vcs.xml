@@ -4,5 +4,6 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/sirius-sdk-android" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/sirius-sdk-android/sdk_android/java_sdk" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sirius-sdk-kotlin" vcs="Git" />
   </component>
 </project>

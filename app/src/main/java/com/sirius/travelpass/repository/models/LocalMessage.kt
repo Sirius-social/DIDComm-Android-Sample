@@ -2,9 +2,10 @@ package com.sirius.travelpass.repository.models
 
 import com.j256.ormlite.field.DatabaseField
 import com.j256.ormlite.table.DatabaseTable
-import com.sirius.sdk.agent.pairwise.Pairwise
-import com.sirius.sdk.messaging.Message
-import com.sirius.sdk_android.helpers.PairwiseHelper
+import com.sirius.library.agent.pairwise.Pairwise
+import com.sirius.library.messaging.Message
+import com.sirius.library.mobile.helpers.PairwiseHelper
+
 import com.sirius.travelpass.ui.chats.message.BaseItemMessage
 import org.json.JSONObject
 import java.lang.reflect.InvocationTargetException

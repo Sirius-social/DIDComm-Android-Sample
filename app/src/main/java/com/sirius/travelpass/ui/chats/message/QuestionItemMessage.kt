@@ -2,12 +2,13 @@ package com.sirius.travelpass.ui.chats.message
 
 
 import com.sirius.travelpass.models.ui.ItemCredentialsDetails
-import com.sirius.sdk.agent.aries_rfc.feature_0036_issue_credential.messages.ProposedAttrib
-import com.sirius.sdk.agent.aries_rfc.feature_0113_question_answer.mesages.QuestionMessage
-import com.sirius.sdk.agent.listener.Event
-import com.sirius.sdk_android.helpers.ScenarioHelper
-import com.sirius.sdk_android.scenario.EventAction
-import com.sirius.sdk_android.scenario.EventActionListener
+import com.sirius.library.agent.aries_rfc.feature_0036_issue_credential.messages.ProposedAttrib
+import com.sirius.library.agent.aries_rfc.feature_0113_question_answer.messages.QuestionMessage
+import com.sirius.library.agent.listener.Event
+import com.sirius.library.mobile.helpers.ScenarioHelper
+import com.sirius.library.mobile.scenario.EventAction
+import com.sirius.library.mobile.scenario.EventActionListener
+
 import com.sirius.travelpass.models.ui.ItemQuestionAnswer
 import com.sirius.travelpass.repository.models.LocalMessage
 import org.json.JSONObject
@@ -37,7 +38,7 @@ class QuestionItemMessage : BaseItemMessage {
         // expiresTime = questionMessage?.expiresTime
         hint = questionMessage?.questionDetail
         name = questionMessage?.questionText
-        answerList = questionMessage?.getValidResponses()?.map {
+        answerList = questionMessage?.validResponses?.map {
             ItemQuestionAnswer(it)
         }
     }
@@ -54,8 +55,8 @@ class QuestionItemMessage : BaseItemMessage {
 
 
     override fun accept(comment : String?) {
-        ScenarioHelper.getInstance().acceptScenario("Question", message?.id ?: "",comment, object:
-            EventActionListener{
+        ScenarioHelper.getInstance().acceptScenario("Question", message?.getId() ?: "",comment, object:
+            EventActionListener {
             override fun onActionStart(action: EventAction, id: String, comment: String?) {
 
             }
@@ -74,7 +75,7 @@ class QuestionItemMessage : BaseItemMessage {
     }
 
     override fun cancel() {
-        ScenarioHelper.getInstance().stopScenario("Question", message?.id ?: "", "Canceled By Me", object :
+        ScenarioHelper.getInstance().stopScenario("Question", message?.getId() ?: "", "Canceled By Me", object :
             EventActionListener {
             override fun onActionStart(action: EventAction, id: String, comment: String?) {
 

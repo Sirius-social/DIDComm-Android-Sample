@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8">
-      <module name="TravelPass.app" target="11" />
+    <bytecodeTargetLevel target="11">
       <module name="TravelPass.sirius-sdk-android.sdk_android" target="11" />
+      <module name="TravelPass.sirius-sdk-kotlin.commonMain" target="1.8" />
+      <module name="TravelPass.sirius-sdk-kotlin.commonTest" target="1.8" />
+      <module name="TravelPass.sirius-sdk-kotlin.jvmMain" target="1.8" />
+      <module name="TravelPass.sirius-sdk-kotlin.jvmTest" target="1.8" />
+      <module name="TravelPass.sirius-sdk-kotlin.multiplatform-crypto-libsodium-bindings.commonMain" target="1.8" />
+      <module name="TravelPass.sirius-sdk-kotlin.multiplatform-crypto-libsodium-bindings.commonTest" target="1.8" />
+      <module name="TravelPass.sirius-sdk-kotlin.multiplatform-crypto-libsodium-bindings.jvmMain" target="1.8" />
+      <module name="TravelPass.sirius-sdk-kotlin.multiplatform-crypto-libsodium-bindings.jvmTest" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

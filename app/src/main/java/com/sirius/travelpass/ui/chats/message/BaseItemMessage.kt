@@ -4,8 +4,8 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.sirius.travelpass.utils.DateUtils
-import com.sirius.sdk.agent.listener.Event
-import com.sirius.sdk.messaging.Message
+import com.sirius.library.agent.listener.Event
+import com.sirius.library.messaging.Message
 import com.sirius.travelpass.base.App
 import com.sirius.travelpass.repository.MessageRepository
 import com.sirius.travelpass.repository.models.LocalMessage
@@ -65,20 +65,20 @@ abstract class BaseItemMessage {
 
             if(it.messageObjectHasKey("tags")){
                 val tags = it.messageObj.optJSONObject("tags")
-                isAccepted =  tags.optBoolean("isAccepted")
+                isAccepted =  tags?.optBoolean("isAccepted",false) ?: false
             }
             if(it.messageObjectHasKey("me")){
                 isMine = true
             }
-            if(it.message().messageObjectHasKey("sent_time")){
-                val sentTime = it.message().getStringFromJSON("sent_time")
+            if(it.message()?.messageObjectHasKey("sent_time") == true){
+                val sentTime = it.message()?.getStringFromJSON("sent_time")
                 date = DateUtils.getDateFromString(
                     sentTime,
                   DateUtils.PATTERN_ROSTER_STATUS_RESPONSE2,true)
 
             }
             message = it.message()
-            id = message?.id ?:""
+            id = message?.getId() ?:""
         }
 
     }
@@ -93,7 +93,7 @@ abstract class BaseItemMessage {
             isError = localMessage.isCanceled
             errorString = localMessage.canceledCause
             commentString = localMessage.acceptedComment
-            id = message?.id ?:""
+            id = message?.getId() ?:""
         }
     }
 
